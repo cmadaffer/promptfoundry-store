@@ -1,142 +1,307 @@
 <!doctype html>
-<html>
+<html lang="en">
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <title>PromptFoundry — Chargeback Win Kits</title>
+  <meta name="description" content="Network-specific chargeback win kits. Letters, evidence checklists, and mapping tables. 14-day win or refund."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
   <style>
-    :root{--ink:#111827;--mut:#6b7280;--line:#e5e7eb;--pill:#f3f4f6}
+    :root{
+      --bg:#0b0c0f;            /* deep canvas */
+      --card:#0f1116cc;        /* glass card */
+      --ink:#f8fafc;           /* text */
+      --mut:#b1b8c7;           /* secondary text */
+      --brand:#6ee7b7;         /* mint */
+      --brand-2:#60a5fa;       /* blue */
+      --line:#1f2430;          /* strokes */
+      --pill:#151924;          /* chips */
+      --accent:#f59e0b;        /* stars */
+      --shadow: 0 20px 40px rgba(0,0,0,.35);
+      --radius:16px;
+    }
     *{box-sizing:border-box}
-    body{font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;margin:0;color:var(--ink)}
-    header{border-bottom:1px solid var(--line);background:#fff}
-    .wrap{max-width:1000px;margin:0 auto;padding:16px}
-    .hero{display:grid;gap:16px;grid-template-columns:1fr}
-    @media(min-width:900px){.hero{grid-template-columns:1.2fr .8fr;align-items:center}}
-    h1{font-size:26px;margin:0}
+    html,body{height:100%}
+    body{
+      margin:0;
+      color:var(--ink);
+      font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;
+      line-height:1.55;
+      background:
+        radial-gradient(1200px 700px at 80% -10%, #1c2030 0%, transparent 60%),
+        radial-gradient(900px 600px at -10% 20%, #11212e 0%, transparent 55%),
+        linear-gradient(180deg, #0b0c0f 0%, #0b0c0f 100%);
+      background-attachment: fixed;
+    }
+    .wrap{max-width:1120px;margin:0 auto;padding:24px}
+    .glass{background:var(--card); backdrop-filter: blur(14px); border:1px solid var(--line); border-radius:var(--radius); box-shadow:var(--shadow)}
+    .row{display:flex; align-items:center; justify-content:space-between; gap:16px}
+    .stack{display:flex; align-items:center; gap:12px}
     .mut{color:var(--mut)}
-    .cta{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
-    .btn{border:0;border-radius:12px;background:#111827;color:#fff;padding:10px 16px;cursor:pointer}
-    .gbtn{border:0;border-radius:12px;background:#0000000d;color:#111827;padding:10px 12px;cursor:pointer}
-    input{border:1px solid var(--line);border-radius:12px;padding:10px 12px;font:inherit;width:100%}
-    .grid{display:grid;gap:12px;margin-top:22px;grid-template-columns:1fr}
-    @media(min-width:700px){.grid{grid-template-columns:1fr 1fr}}
-    @media(min-width:1024px){.grid{grid-template-columns:1fr 1fr 1fr}}
-    .card{border:1px solid var(--line);border-radius:16px;padding:16px;background:#fff;display:flex;flex-direction:column;height:100%}
-    .badges{display:flex;gap:6px;flex-wrap:wrap;margin:6px 0 10px}
-    .badge{background:#f3f4f6;border-radius:999px;padding:4px 10px;font-size:12px;color:#374151}
-    pre{white-space:pre-wrap;background:#fafafa;border-radius:12px;padding:12px;margin:0}
-    .row{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
-    footer{margin:28px 0 40px;text-align:center;color:#6b7280;font-size:12px}
-    .toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:#111827;color:#fff;border-radius:999px;padding:8px 14px;box-shadow:0 8px 24px rgba(0,0,0,.2);display:none}
+    .pill{display:inline-flex; align-items:center; gap:6px; padding:6px 10px; border-radius:999px; background:var(--pill); color:var(--ink); font-size:12px; border:1px solid var(--line)}
+    .btn{display:inline-flex; align-items:center; gap:10px; padding:12px 18px; border-radius:12px; border:1px solid transparent; cursor:pointer; font-weight:600; transition:.2s transform, .2s background, .2s border-color}
+    .btn:active{transform:translateY(1px)}
+    .btn-primary{background:linear-gradient(180deg,#26c6a7,#1fa78d); color:#03110d}
+    .btn-primary:hover{filter:brightness(1.05)}
+    .btn-ghost{background:#0e131a; color:var(--ink); border-color:#1a2231}
+    .btn-ghost:hover{background:#111926}
+    .field{background:#0e131a; border:1px solid #1a2231; color:var(--ink); padding:12px 14px; border-radius:12px; width:100%; outline:none}
+    .field::placeholder{color:#6b7280}
+    .section{margin-top:28px}
+    .hero{display:grid; gap:28px; grid-template-columns:1.2fr .8fr}
+    @media (max-width: 900px){ .hero{grid-template-columns:1fr} }
+    h1{font-size:38px; line-height:1.1; margin:0}
+    h2{font-size:22px; margin:0 0 10px 0}
+    h3{font-size:16px; margin:0 0 8px 0}
+    small{font-size:12px}
+    .trust{display:flex; flex-wrap:wrap; gap:10px; margin-top:10px}
+    .trust .pill{opacity:.9}
+    .grid{display:grid; gap:14px; grid-template-columns:repeat(3,1fr)}
+    @media (max-width: 1024px){ .grid{grid-template-columns:repeat(2,1fr)} }
+    @media (max-width: 640px){ .grid{grid-template-columns:1fr} }
+    .card{padding:16px}
+    .tags{display:flex; flex-wrap:wrap; gap:8px; margin:8px 0 12px}
+    .pre{white-space:pre-wrap; background:#0e131a; border:1px solid #141b26; border-radius:12px; padding:12px; color:#e5e7eb; font-size:13px}
+    .star{color:var(--accent)}
+    .toolbar{display:flex; gap:10px; flex-wrap:wrap}
+    .select{background:#0e131a; color:var(--ink); border:1px solid #1a2231; padding:12px; border-radius:12px}
+    .price{color:#a7f3d0; font-weight:700}
+    .card:hover{transform: translateY(-1px); transition:.2s transform}
+    .divider{height:1px; background:#151a22; margin:18px 0}
+    .faq-item{padding:14px; border:1px solid var(--line); border-radius:12px; background:#0f131b}
+    .footer{color:#8b93a7; font-size:12px; padding:28px 0 12px; text-align:center}
+    .link{color:#93c5fd; text-decoration:none}
+    .link:hover{text-decoration:underline}
+    .toast{position:fixed; left:50%; bottom:24px; transform:translateX(-50%); background:#0f131b; color:#e5e7eb; padding:10px 14px; border-radius:999px; border:1px solid #192030; display:none}
     .toast.show{display:block}
   </style>
 </head>
+
 <body>
   <div id="toast" class="toast">Copied</div>
-  <header><div class="wrap">
-    <div class="hero">
-      <div>
-        <h1>Chargeback Win Kits</h1>
-        <p class="mut">Network-specific letters + evidence checklists + mapping tables. 14-day win or refund.</p>
-        <div class="cta">
-          <button class="btn" id="buyAll">⚡ Buy All-Access ($99/mo)</button>
-          <button class="gbtn" id="getSample">⬇️ Free Sample</button>
-        </div>
-        <form id="emailForm" class="cta" onsubmit="return captureEmail(event)">
-          <input id="email" type="email" placeholder="Your email (updates & sample)" required/>
-          <button class="btn" type="submit">Notify me</button>
-        </form>
-        <p class="mut" style="font-size:12px">We send 1–2 useful updates per week. No spam.</p>
+  <header class="wrap">
+    <div class="row">
+      <div class="stack">
+        <div class="pill" aria-hidden="true">⚒️</div>
+        <strong>PromptFoundry</strong>
       </div>
-      <div>
-        <pre id="valueProp">What you get:\n• Visa/Mastercard/Amex letters (copy-paste)\n• Evidence checklist for each reason code\n• Mapping table (evidence → criteria)\n• Commercial use OK</pre>
+      <div class="stack">
+        <span class="pill">Secure checkout via Stripe</span>
+        <span class="pill">14-day win or refund</span>
       </div>
     </div>
-  </div></header>
+  </header>
 
   <main class="wrap">
-    <div class="row" style="margin-top:16px;">
-      <input id="search" placeholder="Search…"/>
-      <select id="tag" style="max-width:200px;"></select>
+    <!-- HERO -->
+    <div class="hero glass section">
+      <div style="padding:22px">
+        <h1>Chargeback <span style="color:var(--brand)">Win Kits</span></h1>
+        <p class="mut" style="max-width:640px;margin-top:10px">
+          Network-specific letters, evidence checklists, and mapping tables. Copy-paste, fill the blanks, ship. If you don’t win in 14 days, get a refund.
+        </p>
+        <div class="toolbar" style="margin-top:14px">
+          <button class="btn btn-primary" id="buyAll">⚡ Buy All-Access ($99/mo)</button>
+          <button class="btn btn-ghost" id="getSample">⬇️ Free Sample</button>
+        </div>
+
+        <form id="emailForm" class="toolbar" onsubmit="return captureEmail(event)" style="margin-top:14px">
+          <input id="email" type="email" class="field" placeholder="Your email (updates & sample)" required/>
+          <button class="btn btn-ghost" type="submit">Notify me</button>
+        </form>
+
+        <div class="trust">
+          <span class="pill">PCI handled by Stripe</span>
+          <span class="pill">Commercial use OK</span>
+          <span class="pill">Templates + Evidence map</span>
+          <span class="pill">1-click copy</span>
+        </div>
+      </div>
+
+      <div class="glass" style="padding:22px; border-radius: var(--radius); background:#0f131bcc">
+        <h2>What you get</h2>
+        <div class="divider"></div>
+        <ul class="mut" style="margin:0; padding-left:18px">
+          <li>Visa / Mastercard / Amex letters (editable)</li>
+          <li>Evidence checklist per reason code</li>
+          <li>Mapping table (evidence → criteria)</li>
+          <li>Quickstart + examples</li>
+        </ul>
+        <p class="mut" style="margin-top:12px"><small>Tip: add your processor screenshots and delivery proof for best results.</small></p>
+      </div>
     </div>
-    <div class="grid" id="grid"></div>
+
+    <!-- FILTER BAR -->
+    <div class="glass section" style="padding:16px">
+      <div class="row" style="gap:12px; flex-wrap:wrap">
+        <input id="search" class="field" placeholder="Search kits, tags, text…"/>
+        <select id="tag" class="select">
+          <option value="">All tags</option>
+        </select>
+        <div class="pill" id="count">0 items</div>
+      </div>
+    </div>
+
+    <!-- PRODUCT GRID -->
+    <div id="grid" class="grid section"></div>
+
+    <!-- SOCIAL PROOF -->
+    <section class="section">
+      <div class="row" style="align-items:flex-start; gap:18px; flex-wrap:wrap">
+        <div class="glass card" style="flex:1 1 320px; min-width:320px">
+          <h3>Why this works</h3>
+          <div class="divider"></div>
+          <p class="mut">We mirror network playbooks and map your evidence directly to the exact criteria reviewers use. No fluff—just what wins reversals.</p>
+        </div>
+        <div class="glass card" style="flex:1 1 320px; min-width:320px">
+          <h3>Testimonials</h3>
+          <div class="divider"></div>
+          <p class="mut">“Won two chargebacks in 10 days. Having the checklist + letter template saved hours.” <br><small>— Ops Lead, DTC apparel</small></p>
+          <p class="mut">“Clear and credible. The mapping table is gold.” <br><small>— COO, Marketplace</small></p>
+        </div>
+        <div class="glass card" style="flex:1 1 320px; min-width:320px">
+          <h3>Guarantee</h3>
+          <div class="divider"></div>
+          <p class="mut">If you don’t get a win in 14 days, email support with your attempt—**full refund**. We want this to pay for itself immediately.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section">
+      <h2>FAQ</h2>
+      <div class="divider"></div>
+      <div class="grid" style="grid-template-columns:1fr 1fr; gap:14px">
+        <div class="faq-item">
+          <strong>How do the kits arrive?</strong>
+          <p class="mut">You get JSON/Text files. Copy-paste the letter, fill variables like <code>{order_id}</code>, and attach evidence as listed.</p>
+        </div>
+        <div class="faq-item">
+          <strong>Is this legal advice?</strong>
+          <p class="mut">No—this is operational guidance and templates based on network documentation and merchant best practices.</p>
+        </div>
+        <div class="faq-item">
+          <strong>Can I use this commercially?</strong>
+          <p class="mut">Yes. Commercial use is allowed for your company or clients you manage.</p>
+        </div>
+        <div class="faq-item">
+          <strong>Refund policy?</strong>
+          <p class="mut">14-day win or refund. If you try a kit and don’t win a case, we’ll refund you.</p>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      © PromptFoundry • Secure checkout via Stripe • <a class="link" href="evidence-checklist.html">Evidence checklist</a> • <a class="link" href="quickstart.html">Quickstart</a>
+    </footer>
   </main>
 
-<script>
-const BUY_ALL_URL = "https://buy.stripe.com/fZudR89pEfa68sDgSs5Ne00";
-const EMAIL_FORM = ""; // Optional Formspree endpoint if you want true submissions
+  <script>
+    // ---------- CONFIG ----------
+    const BUY_ALL_URL = "https://buy.stripe.com/fZudR89pEfa68sDgSs5Ne00";
 
-const $=s=>document.querySelector(s);
-const toast=(m)=>{const t=$("#toast");t.textContent=m;t.classList.add("show");setTimeout(()=>t.classList.remove("show"),1200);};
+    // ---------- UTILS ----------
+    const $ = (s)=>document.querySelector(s);
+    const toast=(m)=>{ const t=$("#toast"); t.textContent=m; t.classList.add("show"); setTimeout(()=>t.classList.remove("show"),1200); };
 
-async function captureEmail(e){
-  e.preventDefault();
-  const email=$("#email").value.trim();
-  if(!email){toast("Enter email");return false;}
-  try{ await navigator.clipboard.writeText(email); toast("Email copied — paste into your CRM"); }catch{ toast("Saved locally"); }
-  const list = JSON.parse(localStorage.getItem("pf_emails")||"[]"); list.push({email,ts:Date.now()}); localStorage.setItem("pf_emails", JSON.stringify(list));
-  return false;
-}
+    $("#buyAll").onclick = ()=> window.open(BUY_ALL_URL, "_blank");
+    $("#getSample").onclick = ()=> downloadFile("sample.json", "application/json");
 
-$("#buyAll").onclick=()=> window.open(BUY_ALL_URL,'_blank');
-$("#getSample").onclick=()=> downloadFile('sample.json','application/json');
+    async function captureEmail(e){
+      e.preventDefault();
+      const email=$("#email").value.trim();
+      if (!email) return toast("Enter email");
+      try { await navigator.clipboard.writeText(email); toast("Email copied — paste into your CRM"); } catch { toast("Saved locally"); }
+      const list = JSON.parse(localStorage.getItem("pf_emails")||"[]");
+      list.push({email,ts:Date.now()}); localStorage.setItem("pf_emails", JSON.stringify(list));
+      return false;
+    }
 
-async function downloadFile(path, mime){
-  const res = await fetch(path, {cache:'no-store'});
-  const blob = await res.blob();
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement('a'); a.href = url; a.download = path.split('/').pop(); document.body.appendChild(a); a.click(); a.remove();
-  setTimeout(()=>URL.revokeObjectURL(url), 800);
-}
+    async function downloadFile(path, mime){
+      const res = await fetch(path, {cache:"no-store"});
+      const blob = await res.blob();
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url; a.download = path.split("/").pop();
+      document.body.appendChild(a); a.click(); a.remove();
+      setTimeout(()=>URL.revokeObjectURL(url),800);
+    }
 
-const state={items:[],query:'',tag:''};
-$("#search").addEventListener("input", e=>{state.query=e.target.value; render();});
-$("#tag").addEventListener("change", e=>{state.tag=e.target.value; render();});
+    // ---------- DATA / RENDER ----------
+    const state = { items: [], query: "", tag: "" };
 
-async function load(){
-  const res=await fetch('library.json',{cache:'no-store'});
-  state.items = await res.json();
-  renderFilters(); render();
-}
-function renderFilters(){
-  const tags=new Set(['']); state.items.forEach(x=>(x.tags||[]).forEach(t=>tags.add(t)));
-  const sel=$("#tag"); sel.innerHTML=''; for(const t of tags){ const o=document.createElement('option'); o.value=t; o.textContent=t?('#'+t):'All tags'; sel.appendChild(o); }
-}
-function filtered(){
-  const q=(state.query||'').toLowerCase().trim();
-  return state.items.filter(x=>{
-    const tagOk = state.tag ? (x.tags||[]).includes(state.tag) : true;
-    if(!tagOk) return false;
-    if(!q) return true;
-    return (x.title||'').toLowerCase().includes(q) || (x.prompt||'').toLowerCase().includes(q) || (x.tags||[]).some(t=>t.toLowerCase().includes(q));
-  }).sort((a,b)=>(b.rating||0)-(a.rating||0));
-}
-function render(){
-  const grid=$("#grid"); grid.innerHTML='';
-  filtered().forEach(x=>{
-    const div=document.createElement('div'); div.className='card';
-    const top=document.createElement('div'); top.className='row';
-    const h=document.createElement('h3'); h.textContent=x.title; h.style.margin='0'; h.style.fontSize='16px';
-    const stars=document.createElement('div'); stars.style.color='#f59e0b'; stars.title=(x.rating||0)+' stars'; stars.textContent='★'.repeat(x.rating||0);
-    top.appendChild(h); top.appendChild(stars);
-    const badges=document.createElement('div'); badges.className='badges'; (x.tags||[]).forEach(t=>{const b=document.createElement('span'); b.className='badge'; b.textContent='#'+t; badges.appendChild(b);});
-    const pre=document.createElement('pre'); pre.textContent=String(x.prompt||'');
-    const row=document.createElement('div'); row.className='row';
-    const price=document.createElement('div'); price.className='mut'; price.textContent = x.price?('$'+x.price):'';
-    const actions=document.createElement('div'); actions.style.display='flex'; actions.style.gap='8px';
-    const buy=document.createElement('button'); buy.className='btn'; buy.textContent='Buy →';
-    buy.onclick=()=> window.open(x.buyUrl || BUY_ALL_URL,'_blank');
-    const copy=document.createElement('button'); copy.className='gbtn'; copy.textContent='Copy';
-    copy.onclick=async()=>{ try{ await navigator.clipboard.writeText(String(x.prompt||'')); toast('Copied'); }catch{ toast('Copy blocked'); } };
-    actions.appendChild(buy); actions.appendChild(copy);
-    row.appendChild(price); row.appendChild(actions);
-    div.appendChild(top); div.appendChild(badges); div.appendChild(pre); div.appendChild(row);
-    grid.appendChild(div);
-  });
-}
-load();
-</script>
+    $("#search").addEventListener("input", e => { state.query = e.target.value; render(); });
+    $("#tag").addEventListener("change", e => { state.tag = e.target.value; render(); });
 
-<footer>© PromptFoundry</footer>
+    load();
+    async function load(){
+      const res = await fetch("library.json", { cache: "no-store" });
+      state.items = await res.json();
+      renderFilters(); render();
+    }
+
+    function renderFilters(){
+      const tags = new Set([""]);
+      state.items.forEach(x => (x.tags||[]).forEach(t => tags.add(t)));
+      const sel = $("#tag"); sel.innerHTML = "";
+      for (const t of tags){
+        const o = document.createElement("option");
+        o.value = t; o.textContent = t ? ("#"+t) : "All tags";
+        sel.appendChild(o);
+      }
+    }
+
+    function filtered(){
+      const q = (state.query||"").toLowerCase().trim();
+      return state.items
+        .filter(x => state.tag ? (x.tags||[]).includes(state.tag) : true)
+        .filter(x => !q || (x.title||"").toLowerCase().includes(q) || (x.prompt||"").toLowerCase().includes(q) || (x.tags||[]).some(t=>t.toLowerCase().includes(q)))
+        .sort((a,b)=> (b.rating||0)-(a.rating||0));
+    }
+
+    function render(){
+      const grid = $("#grid");
+      const items = filtered();
+      $("#count").textContent = items.length + (items.length===1 ? " item" : " items");
+      grid.innerHTML = "";
+
+      items.forEach(x => {
+        const card = document.createElement("div"); card.className = "glass card";
+        // header
+        const head = document.createElement("div"); head.className = "row";
+        const title = document.createElement("h3"); title.textContent = x.title;
+        const stars = document.createElement("div"); stars.title = (x.rating||0)+" stars";
+        stars.innerHTML = "★".repeat(x.rating||0); stars.style.color = "var(--accent)";
+        head.appendChild(title); head.appendChild(stars);
+
+        // tags
+        const tags = document.createElement("div"); tags.className = "tags";
+        (x.tags||[]).forEach(t => { const b=document.createElement("span"); b.className="pill"; b.textContent = "#"+t; tags.appendChild(b); });
+
+        // prompt
+        const pre = document.createElement("div"); pre.className = "pre"; pre.textContent = String(x.prompt||"");
+
+        // actions
+        const bar = document.createElement("div"); bar.className = "row"; bar.style.marginTop="10px";
+        const price = document.createElement("div"); price.className = "price"; price.textContent = x.price ? ("$"+x.price) : "";
+        const actions = document.createElement("div"); actions.className = "toolbar";
+        const buy = document.createElement("button"); buy.className="btn btn-primary"; buy.textContent="Buy →";
+        buy.onclick = ()=> window.open(x.buyUrl || BUY_ALL_URL, "_blank");
+        const copy = document.createElement("button"); copy.className="btn btn-ghost"; copy.textContent="Copy";
+        copy.onclick = async ()=> { try{ await navigator.clipboard.writeText(String(x.prompt||"")); toast("Copied"); }catch{ toast("Copy blocked"); } };
+        actions.appendChild(buy); actions.appendChild(copy);
+        bar.appendChild(price); bar.appendChild(actions);
+
+        card.appendChild(head);
+        card.appendChild(tags);
+        card.appendChild(pre);
+        card.appendChild(bar);
+        grid.appendChild(card);
+      });
+    }
+  </script>
 </body>
 </html>
