@@ -1,35 +1,52 @@
 [
   {
-    "id": "pack-visa-10.4",
+    "id": "cb-visa-10-4",
+    "category": "Chargebacks",
     "title": "Chargeback Win Kit — Visa 10.4 (Fraud)",
-    "tags": ["Disputes","Disputex","Operations"],
+    "tags": ["Disputes","Operations"],
     "rating": 5,
-    "uses": 0,
-    "createdAt": "2025-01-01T00:00:00.000Z",
     "price": 99,
     "buyUrl": "https://buy.stripe.com/fZudR89pEfa68sDgSs5Ne00",
-    "prompt": "Draft a Visa 10.4 representment for {{order_id}} {{amount}} {{order_date}}. Map evidence to reason code 10.4 criteria. Include: 3-D Secure data, AVS/CVV, IP/device, delivery proof, prior comms. Close with issuer guidance."
+    "prompt": "Draft a Visa 10.4 representment for {{order_id}} {{amount}} {{order_date}}. Map evidence to 10.4 criteria. Include: 3-D Secure, AVS/CVV, IP/device, delivery proof, prior comms. Close with issuer guidance."
   },
   {
-    "id": "pack-mc-4853",
-    "title": "Chargeback Win Kit — Mastercard 4853 (Cardholder Dispute)",
-    "tags": ["Disputes","Disputex","Operations"],
+    "id": "cb-mc-4853",
+    "category": "Chargebacks",
+    "title": "Chargeback Win Kit — Mastercard 4853",
+    "tags": ["Disputes","Operations"],
     "rating": 5,
-    "uses": 0,
-    "createdAt": "2025-01-01T00:00:00.000Z",
     "price": 99,
     "buyUrl": "https://buy.stripe.com/fZudR89pEfa68sDgSs5Ne00",
-    "prompt": "Draft a Mastercard 4853 representment for {{order_id}} {{amount}} {{order_date}}. Map evidence to 4853 documentation list. Include: identity/auth evidence, usage logs, delivery, support thread, refund policy, terms consent."
+    "prompt": "Draft a Mastercard 4853 representment for {{order_id}} {{amount}} {{order_date}}. Map evidence to 4853 doc list. Include: identity/auth evidence, usage logs, delivery, support thread, terms consent."
   },
   {
-    "id": "pack-amex-unauth",
-    "title": "Chargeback Win Kit — Amex Unauthorized",
-    "tags": ["Disputes","Disputex","Operations"],
+    "id": "cr-overdue-nudge",
+    "category": "ClientReach",
+    "title": "ClientReach — Overdue Invoice Nudge",
+    "tags": ["ClientReach","Cold Email"],
     "rating": 5,
-    "uses": 0,
-    "createdAt": "2025-01-01T00:00:00.000Z",
-    "price": 99,
+    "price": 49,
     "buyUrl": "https://buy.stripe.com/fZudR89pEfa68sDgSs5Ne00",
-    "prompt": "Draft an Amex unauthorized-dispute representment for {{order_id}} {{amount}} {{order_date}}. Map evidence to Amex unauthorized checklist. Include: device fingerprint, AVS/CVV match, usage/activity, delivery/proof-of-receipt, KYC, comms."
+    "prompt": "Follow-up for Invoice {{invoice_number}} ({{amount}}) sent {{sent_date}}. Include pay link {{pay_url}} and two call slots. Tone: confident, respectful, direct. Keep it to {{word_limit}} words."
+  },
+  {
+    "id": "lg-local-75",
+    "category": "LeadGen",
+    "title": "Lead Gen — Local Services (≤75 words)",
+    "tags": ["LeadGen","Cold Email"],
+    "rating": 5,
+    "price": 49,
+    "buyUrl": "https://buy.stripe.com/fZudR89pEfa68sDgSs5Ne00",
+    "prompt": "Write a {{channel}} outreach for a {{industry}} {{role}} offering {{service}} in {{city}}. Include one proof ({{proof_point}}) and a single CTA to book a {{time_window}} using {{cta_link}}."
+  },
+  {
+    "id": "ops-sop-writer",
+    "category": "Ops",
+    "title": "Ops — SOP Writer",
+    "tags": ["Operations"],
+    "rating": 5,
+    "price": 59,
+    "buyUrl": "https://buy.stripe.com/fZudR89pEfa68sDgSs5Ne00",
+    "prompt": "Turn a process description into an SOP with Roles, Tools, Steps, QA checks, and Risks. Output Markdown. Ask for missing inputs before drafting."
   }
 ]
