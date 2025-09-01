@@ -1,0 +1,132 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>PromptFoundry — Chargeback Win Kits</title>
+  <style>
+    :root{--ink:#111827;--mut:#6b7280;--line:#e5e7eb;--pill:#f3f4f6}
+    *{box-sizing:border-box}body{font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;margin:0;color:var(--ink)}
+    header{border-bottom:1px solid var(--line);background:#fff}
+    .wrap{max-width:1000px;margin:0 auto;padding:16px}
+    .hero{display:grid;gap:16px;grid-template-columns:1fr}@media(min-width:900px){.hero{grid-template-columns:1.2fr .8fr;align-items:center}}
+    h1{font-size:26px;margin:0}
+    .mut{color:var(--mut)} .cta{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+    .btn{border:0;border-radius:12px;background:#111827;color:#fff;padding:10px 16px;cursor:pointer}
+    .gbtn{border:0;border-radius:12px;background:#0000000d;color:#111827;padding:10px 12px;cursor:pointer}
+    input{border:1px solid var(--line);border-radius:12px;padding:10px 12px;font:inherit;width:100%}
+    .grid{display:grid;gap:12px;margin-top:22px;grid-template-columns:1fr}@media(min-width:700px){.grid{grid-template-columns:1fr 1fr}}@media(min-width:1024px){.grid{grid-template-columns:1fr 1fr 1fr}}
+    .card{border:1px solid var(--line);border-radius:16px;padding:16px;background:#fff;display:flex;flex-direction:column;height:100%}
+    .badges{display:flex;gap:6px;flex-wrap:wrap;margin:6px 0 10px}.badge{background:#f3f4f6;border-radius:999px;padding:4px 10px;font-size:12px;color:#374151}
+    pre{white-space:pre-wrap;background:#fafafa;border-radius:12px;padding:12px;margin:0}
+    .row{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
+    footer{margin:28px 0 40px;text-align:center;color:#6b7280;font-size:12px}
+    .toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:#111827;color:#fff;border-radius:999px;padding:8px 14px;box-shadow:0 8px 24px rgba(0,0,0,.2);display:none}
+    .toast.show{display:block}
+  </style>
+</head>
+<body>
+  <div id="toast" class="toast">Copied</div>
+  <header><div class="wrap">
+    <div class="hero">
+      <div>
+        <h1>Chargeback Win Kits</h1>
+        <p class="mut">Network-specific letters + evidence checklists + mapping tables. 14-day win or refund.</p>
+        <div class="cta">
+          <button class="btn" id="buyAll">⚡ Buy All-Access ($99/mo)</button>
+          <button class="gbtn" id="getSample">⬇️ Free Sample</button>
+        </div>
+        <form id="emailForm" class="cta" onsubmit="return captureEmail(event)">
+          <input id="email" type="email" placeholder="Your email (updates & sample)" required/>
+          <button class="btn" type="submit">Notify me</button>
+        </form>
+        <p class="mut" style="font-size:12px">We send 1–2 useful updates per week. No spam.</p>
+      </div>
+      <div>
+        <pre id="valueProp">What you get:\n• Visa/Mastercard/Amex letters (copy-paste)\n• Evidence checklist for each reason code\n• Mapping table (evidence → criteria)\n• Commercial use OK</pre>
+      </div>
+    </div>
+  </div></header>
+
+  <main class="wrap">
+    <div class="row" style="margin-top:16px;">
+      <input id="search" placeholder="Search…"/>
+      <select id="tag" style="max-width:200px;"></select>
+    </div>
+    <div class="grid" id="grid"></div>
+  </main>
+
+<script>
+const BUY_ALL_URL = "REPLACE_WITH_STRIPE_LINK_ALL_ACCESS";
+const EMAIL_FORM = ""; // Optional: Formspree endpoint
+
+const $=s=>document.querySelector(s);
+const toast=(m)=>{const t=$("#toast");t.textContent=m;t.classList.add("show");setTimeout(()=>t.classList.remove("show"),1200);};
+
+async function captureEmail(e){
+  e.preventDefault(); const email=$("#email").value.trim(); if(!email){toast("Enter email");return false;}
+  if(EMAIL_FORM){ try{ const r=await fetch(EMAIL_FORM,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({email})}); if(r.ok){toast("Thanks — check your email"); return true;} } catch(e){} }
+  try{ await navigator.clipboard.writeText(email); toast("Email copied — paste into your CRM"); } catch{ toast("Saved locally"); }
+  const list = JSON.parse(localStorage.getItem("pf_emails")||"[]"); list.push({email,ts:Date.now()}); localStorage.setItem("pf_emails", JSON.stringify(list)); return false;
+}
+$("#buyAll").onclick=()=>{ if(BUY_ALL_URL){ window.open(BUY_ALL_URL,'_blank'); } else { alert('Add a Stripe/Gumroad link in BUY_ALL_URL'); }};
+$("#getSample").onclick=()=> downloadFile('sample.json','application/json');
+
+async function downloadFile(path, mime){
+  const res = await fetch(path, {cache:'no-store'});
+  const blob = await res.blob();
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a'); a.href = url; a.download = path.split('/').pop(); document.body.appendChild(a); a.click(); a.remove();
+  setTimeout(()=>URL.revokeObjectURL(url), 800);
+}
+
+const state={items:[],query:'',tag:''};
+$("#search").addEventListener("input", e=>{state.query=e.target.value; render();});
+$("#tag").addEventListener("change", e=>{state.tag=e.target.value; render();});
+
+async function load(){
+  const res=await fetch('library.json',{cache:'no-store'});
+  state.items = await res.json();
+  renderFilters(); render();
+}
+function renderFilters(){
+  const tags=new Set(['']); state.items.forEach(x=>(x.tags||[]).forEach(t=>tags.add(t)));
+  const sel=$("#tag"); sel.innerHTML=''; for(const t of tags){ const o=document.createElement('option'); o.value=t; o.textContent=t?('#'+t):'All tags'; sel.appendChild(o); }
+}
+function filtered(){
+  const q=(state.query||'').toLowerCase().trim();
+  return state.items.filter(x=>{
+    const tagOk = state.tag ? (x.tags||[]).includes(state.tag) : true;
+    if(!tagOk) return false;
+    if(!q) return true;
+    return (x.title||'').toLowerCase().includes(q) || (x.prompt||'').toLowerCase().includes(q) || (x.tags||[]).some(t=>t.toLowerCase().includes(q));
+  }).sort((a,b)=>(b.rating||0)-(a.rating||0));
+}
+function render(){
+  const grid=$("#grid"); grid.innerHTML='';
+  filtered().forEach(x=>{
+    const div=document.createElement('div'); div.className='card';
+    const top=document.createElement('div'); top.className='row';
+    const h=document.createElement('h3'); h.textContent=x.title; h.style.margin='0'; h.style.fontSize='16px';
+    const stars=document.createElement('div'); stars.style.color='#f59e0b'; stars.title=(x.rating||0)+' stars'; stars.textContent='★'.repeat(x.rating||0);
+    top.appendChild(h); top.appendChild(stars);
+    const badges=document.createElement('div'); badges.className='badges'; (x.tags||[]).forEach(t=>{const b=document.createElement('span'); b.className='badge'; b.textContent='#'+t; badges.appendChild(b);});
+    const pre=document.createElement('pre'); pre.textContent=String(x.prompt||'');
+    const row=document.createElement('div'); row.className='row';
+    const price=document.createElement('div'); price.className='mut'; price.textContent = x.price?('$'+x.price):''; 
+    const actions=document.createElement('div'); actions.style.display='flex'; actions.style.gap='8px';
+    const buy=document.createElement('button'); buy.className='btn'; buy.textContent = x.buyUrl && x.buyUrl!=='REPLACE_WITH_STRIPE_LINK' ? 'Buy →' : 'Preview →';
+    buy.onclick=()=>{ if(x.buyUrl && x.buyUrl!=='REPLACE_WITH_STRIPE_LINK'){ window.open(x.buyUrl,'_blank'); } else { downloadFile('sample.json','application/json'); } };
+    const copy=document.createElement('button'); copy.className='gbtn'; copy.textContent='Copy';
+    copy.onclick=async()=>{ try{ await navigator.clipboard.writeText(String(x.prompt||'')); toast('Copied'); }catch{ toast('Copy blocked'); } };
+    actions.appendChild(buy); actions.appendChild(copy);
+    row.appendChild(price); row.appendChild(actions);
+    div.appendChild(top); div.appendChild(badges); div.appendChild(pre); div.appendChild(row);
+    grid.appendChild(div);
+  });
+}
+load();
+</script>
+
+<footer>© PromptFoundry</footer>
+</body></html>
