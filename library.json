@@ -7,7 +7,7 @@
     "rating": 5,
     "price": 99,
     "buyUrl": "https://buy.stripe.com/fZudR89pEfa68sDgSs5Ne00",
-    "prompt": "Draft a Visa 10.4 representment for {{order_id}} {{amount}} {{order_date}}. Map evidence to 10.4 criteria. Include: 3-D Secure, AVS/CVV, IP/device, delivery proof, prior comms. Close with issuer guidance."
+    "prompt": "Draft a Visa 10.4 representment for {{order_id}} {{amount}} {{order_date}}. Map evidence to 10.4 criteria. Include: 3-D Secure data, AVS/CVV, IP/device, delivery proof, prior comms. Close with issuer guidance."
   },
   {
     "id": "cb-mc-4853",
@@ -17,7 +17,17 @@
     "rating": 5,
     "price": 99,
     "buyUrl": "https://buy.stripe.com/fZudR89pEfa68sDgSs5Ne00",
-    "prompt": "Draft a Mastercard 4853 representment for {{order_id}} {{amount}} {{order_date}}. Map evidence to 4853 doc list. Include: identity/auth evidence, usage logs, delivery, support thread, terms consent."
+    "prompt": "Draft a Mastercard 4853 representment for {{order_id}} {{amount}} {{order_date}}. Map evidence to the 4853 doc list. Include identity/auth evidence, usage logs, delivery, support thread, terms consent."
+  },
+  {
+    "id": "cb-amex-unauth",
+    "category": "Chargebacks",
+    "title": "Chargeback Win Kit — Amex Unauthorized",
+    "tags": ["Disputes","Operations"],
+    "rating": 5,
+    "price": 99,
+    "buyUrl": "https://buy.stripe.com/fZudR89pEfa68sDgSs5Ne00",
+    "prompt": "Draft an Amex unauthorized-dispute representment for {{order_id}} {{amount}} {{order_date}}. Map evidence to Amex checklist: device fingerprint, AVS/CVV, proof-of-receipt, KYC, comms."
   },
   {
     "id": "cr-overdue-nudge",
@@ -27,7 +37,7 @@
     "rating": 5,
     "price": 49,
     "buyUrl": "https://buy.stripe.com/fZudR89pEfa68sDgSs5Ne00",
-    "prompt": "Follow-up for Invoice {{invoice_number}} ({{amount}}) sent {{sent_date}}. Include pay link {{pay_url}} and two call slots. Tone: confident, respectful, direct. Keep it to {{word_limit}} words."
+    "prompt": "Follow-up for Invoice {{invoice_number}} ({{amount}}) sent {{sent_date}}. Include {{pay_url}} and two call slots. Tone: confident, respectful, direct. Keep to {{word_limit}} words."
   },
   {
     "id": "lg-local-75",
@@ -47,6 +57,6 @@
     "rating": 5,
     "price": 59,
     "buyUrl": "https://buy.stripe.com/fZudR89pEfa68sDgSs5Ne00",
-    "prompt": "Turn a process description into an SOP with Roles, Tools, Steps, QA checks, and Risks. Output Markdown. Ask for missing inputs before drafting."
+    "prompt": "Turn a process description into an SOP with Roles, Tools, Steps, QA checks, and Risks. Output Markdown. Ask for any missing inputs before drafting."
   }
 ]
