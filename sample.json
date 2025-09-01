@@ -1,0 +1,17 @@
+[
+  {
+    "id": "pack-visa-10.4",
+    "title": "Chargeback Win Kit \u2014 Visa 10.4 (Fraud)",
+    "tags": [
+      "Disputes",
+      "Disputex",
+      "Operations"
+    ],
+    "rating": 5,
+    "uses": 0,
+    "createdAt": "2025-09-01T18:12:12.530505",
+    "price": 99,
+    "buyUrl": "REPLACE_WITH_STRIPE_LINK",
+    "prompt": "Draft a Visa 10.4 representment for {{order_id}} {{amount}} {{order_date}}. Map evidence to reason code 10.4 criteria. Include: 3-D Secure data, AVS/CVV, IP/device, delivery proof, prior comms. Close with issuer guidance."
+  }
+]
