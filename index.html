@@ -6,18 +6,24 @@
   <title>PromptFoundry — Chargeback Win Kits</title>
   <style>
     :root{--ink:#111827;--mut:#6b7280;--line:#e5e7eb;--pill:#f3f4f6}
-    *{box-sizing:border-box}body{font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;margin:0;color:var(--ink)}
+    *{box-sizing:border-box}
+    body{font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;margin:0;color:var(--ink)}
     header{border-bottom:1px solid var(--line);background:#fff}
     .wrap{max-width:1000px;margin:0 auto;padding:16px}
-    .hero{display:grid;gap:16px;grid-template-columns:1fr}@media(min-width:900px){.hero{grid-template-columns:1.2fr .8fr;align-items:center}}
+    .hero{display:grid;gap:16px;grid-template-columns:1fr}
+    @media(min-width:900px){.hero{grid-template-columns:1.2fr .8fr;align-items:center}}
     h1{font-size:26px;margin:0}
-    .mut{color:var(--mut)} .cta{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+    .mut{color:var(--mut)}
+    .cta{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
     .btn{border:0;border-radius:12px;background:#111827;color:#fff;padding:10px 16px;cursor:pointer}
     .gbtn{border:0;border-radius:12px;background:#0000000d;color:#111827;padding:10px 12px;cursor:pointer}
     input{border:1px solid var(--line);border-radius:12px;padding:10px 12px;font:inherit;width:100%}
-    .grid{display:grid;gap:12px;margin-top:22px;grid-template-columns:1fr}@media(min-width:700px){.grid{grid-template-columns:1fr 1fr}}@media(min-width:1024px){.grid{grid-template-columns:1fr 1fr 1fr}}
+    .grid{display:grid;gap:12px;margin-top:22px;grid-template-columns:1fr}
+    @media(min-width:700px){.grid{grid-template-columns:1fr 1fr}}
+    @media(min-width:1024px){.grid{grid-template-columns:1fr 1fr 1fr}}
     .card{border:1px solid var(--line);border-radius:16px;padding:16px;background:#fff;display:flex;flex-direction:column;height:100%}
-    .badges{display:flex;gap:6px;flex-wrap:wrap;margin:6px 0 10px}.badge{background:#f3f4f6;border-radius:999px;padding:4px 10px;font-size:12px;color:#374151}
+    .badges{display:flex;gap:6px;flex-wrap:wrap;margin:6px 0 10px}
+    .badge{background:#f3f4f6;border-radius:999px;padding:4px 10px;font-size:12px;color:#374151}
     pre{white-space:pre-wrap;background:#fafafa;border-radius:12px;padding:12px;margin:0}
     .row{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
     footer{margin:28px 0 40px;text-align:center;color:#6b7280;font-size:12px}
@@ -57,19 +63,22 @@
   </main>
 
 <script>
-const BUY_ALL_URL = "REPLACE_WITH_STRIPE_LINK_ALL_ACCESS";
-const EMAIL_FORM = ""; // Optional: Formspree endpoint
+const BUY_ALL_URL = "https://buy.stripe.com/fZudR89pEfa68sDgSs5Ne00";
+const EMAIL_FORM = ""; // Optional Formspree endpoint if you want true submissions
 
 const $=s=>document.querySelector(s);
 const toast=(m)=>{const t=$("#toast");t.textContent=m;t.classList.add("show");setTimeout(()=>t.classList.remove("show"),1200);};
 
 async function captureEmail(e){
-  e.preventDefault(); const email=$("#email").value.trim(); if(!email){toast("Enter email");return false;}
-  if(EMAIL_FORM){ try{ const r=await fetch(EMAIL_FORM,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({email})}); if(r.ok){toast("Thanks — check your email"); return true;} } catch(e){} }
-  try{ await navigator.clipboard.writeText(email); toast("Email copied — paste into your CRM"); } catch{ toast("Saved locally"); }
-  const list = JSON.parse(localStorage.getItem("pf_emails")||"[]"); list.push({email,ts:Date.now()}); localStorage.setItem("pf_emails", JSON.stringify(list)); return false;
+  e.preventDefault();
+  const email=$("#email").value.trim();
+  if(!email){toast("Enter email");return false;}
+  try{ await navigator.clipboard.writeText(email); toast("Email copied — paste into your CRM"); }catch{ toast("Saved locally"); }
+  const list = JSON.parse(localStorage.getItem("pf_emails")||"[]"); list.push({email,ts:Date.now()}); localStorage.setItem("pf_emails", JSON.stringify(list));
+  return false;
 }
-$("#buyAll").onclick=()=>{ if(BUY_ALL_URL){ window.open(BUY_ALL_URL,'_blank'); } else { alert('Add a Stripe/Gumroad link in BUY_ALL_URL'); }};
+
+$("#buyAll").onclick=()=> window.open(BUY_ALL_URL,'_blank');
 $("#getSample").onclick=()=> downloadFile('sample.json','application/json');
 
 async function downloadFile(path, mime){
@@ -113,10 +122,10 @@ function render(){
     const badges=document.createElement('div'); badges.className='badges'; (x.tags||[]).forEach(t=>{const b=document.createElement('span'); b.className='badge'; b.textContent='#'+t; badges.appendChild(b);});
     const pre=document.createElement('pre'); pre.textContent=String(x.prompt||'');
     const row=document.createElement('div'); row.className='row';
-    const price=document.createElement('div'); price.className='mut'; price.textContent = x.price?('$'+x.price):''; 
+    const price=document.createElement('div'); price.className='mut'; price.textContent = x.price?('$'+x.price):'';
     const actions=document.createElement('div'); actions.style.display='flex'; actions.style.gap='8px';
-    const buy=document.createElement('button'); buy.className='btn'; buy.textContent = x.buyUrl && x.buyUrl!=='REPLACE_WITH_STRIPE_LINK' ? 'Buy →' : 'Preview →';
-    buy.onclick=()=>{ if(x.buyUrl && x.buyUrl!=='REPLACE_WITH_STRIPE_LINK'){ window.open(x.buyUrl,'_blank'); } else { downloadFile('sample.json','application/json'); } };
+    const buy=document.createElement('button'); buy.className='btn'; buy.textContent='Buy →';
+    buy.onclick=()=> window.open(x.buyUrl || BUY_ALL_URL,'_blank');
     const copy=document.createElement('button'); copy.className='gbtn'; copy.textContent='Copy';
     copy.onclick=async()=>{ try{ await navigator.clipboard.writeText(String(x.prompt||'')); toast('Copied'); }catch{ toast('Copy blocked'); } };
     actions.appendChild(buy); actions.appendChild(copy);
@@ -129,4 +138,5 @@ load();
 </script>
 
 <footer>© PromptFoundry</footer>
-</body></html>
+</body>
+</html>
