@@ -1,40 +1,52 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>PromptFoundry — Kits & Playbooks</title>
-  <style>
-    :root {
-      --bg:#0b0f13; --panel:#0e141a; --card:#111820; --text:#e6eef6; --muted:#9fb2c4;
-      --pill:#15202b; --accent:#18d67e; --ring:#1f2b36; --border:#1e2a36;
-    }
-    *{box-sizing:border-box}
-    body{margin:0;background:radial-gradient(1200px 600px at 20% -10%, #14202a 0%, transparent 60%),linear-gradient(#0b0f13,#0b0f13);color:var(--text);font:16px/1.5 ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial}
-    .wrap{max-width:1100px;margin:0 auto;padding:24px}
-    .hero{background:var(--panel);border:1px solid var(--border);border-radius:20px;padding:22px 18px;box-shadow:0 20px 40px rgba(0,0,0,.25), inset 0 1px 0 rgba(255,255,255,.02)}
-    h1{margin:0;font-weight:800;letter-spacing:-.02em;font-size:28px}
-    .sub{margin:8px 0 0;color:var(--muted);max-width:680px}
-    .row{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
-    .btn{border-radius:999px;border:1px solid #0003;background:#0d1116;color:#fff;padding:10px 14px;font-weight:600;cursor:pointer}
-    .btn.accent{background:var(--accent);color:#08210f;border-color:transparent}
-    .pill{border-radius:999px;background:var(--pill);color:var(--muted);padding:6px 10px;font-size:12px;border:1px solid var(--ring)}
-    .grid{margin-top:18px;display:grid;gap:14px;grid-template-columns:repeat(1,minmax(0,1fr))}
-    @media (min-width:700px){ .grid{grid-template-columns:repeat(2,minmax(0,1fr))} }
-    @media (min-width:1000px){ .grid{grid-template-columns:repeat(3,minmax(0,1fr))} }
-    .card{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:14px;display:flex;flex-direction:column;gap:10px;min-height:220px}
-    .title{font-weight:700;margin:0;letter-spacing:-.01em}
-    .tags{display:flex;flex-wrap:wrap;gap:6px}
-    .muted{color:var(--muted)}
-    .pre{white-space:pre-wrap;background:#0c1218;border:1px solid var(--ring);color:#cce0f3;border-radius:12px;padding:10px;font-size:13px;line-height:1.4;max-height:132px;overflow:auto}
-    .actions{display:flex;gap:8px;justify-content:space-between;align-items:center}
-    .ghost{background:transparent;border:1px solid var(--ring);color:var(--text)}
-    .toolbar{display:flex;gap:10px;align-items:center;margin-top:12px}
-    input, select{background:#0c1218;border:1px solid var(--ring);color:var(--text);padding:10px;border-radius:12px}
-    input::placeholder{color:#6f859a}
-    footer{margin:32px 0;color:#8798aa;text-align:center;font-size:12px}
-    .alert{margin-top:10px;color:#f0b}
-  </style>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>PromptFoundry — Kits & Playbooks</title>
+<style>
+  :root{
+    --bg:#0b0f13;--panel:#0e141a;--card:#111820;--text:#e6eef6;--muted:#9fb2c4;
+    --pill:#15202b;--accent:#18d67e;--ring:#1f2b36;--border:#1e2a36
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:
+    radial-gradient(1200px 600px at 20% -10%, #14202a 0%, transparent 60%),
+    linear-gradient(#0b0f13,#0b0f13);
+    color:var(--text);font:16px/1.5 ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial}
+  a{color:inherit}
+  .wrap{max-width:1100px;margin:0 auto;padding:24px}
+  .hero{background:var(--panel);border:1px solid var(--border);border-radius:20px;padding:22px 18px;box-shadow:0 20px 40px rgba(0,0,0,.25), inset 0 1px 0 rgba(255,255,255,.02)}
+  h1{margin:0;font-weight:800;letter-spacing:-.02em;font-size:28px}
+  .sub{margin:8px 0 0;color:var(--muted);max-width:680px}
+  .row{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
+  .btn{border-radius:999px;border:1px solid #0003;background:#0d1116;color:#fff;padding:10px 14px;font-weight:600;cursor:pointer;text-decoration:none}
+  .btn.accent{background:var(--accent);color:#08210f;border-color:transparent}
+  .ghost{background:transparent;border:1px solid var(--ring);color:var(--text)}
+  .pill{border-radius:999px;background:var(--pill);color:var(--muted);padding:6px 10px;font-size:12px;border:1px solid var(--ring)}
+  .toolbar{display:flex;gap:10px;align-items:center;margin-top:12px;flex-wrap:wrap}
+  input,select{background:#0c1218;border:1px solid var(--ring);color:var(--text);padding:10px;border-radius:12px}
+  input::placeholder{color:#6f859a}
+  .tabs{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0 4px}
+  .tab{border:1px solid var(--ring);background:var(--pill);color:var(--muted);padding:6px 12px;border-radius:999px;cursor:pointer}
+  .tab.active{background:#1b2835;color:#d8e6f5;border-color:#3a4a5c}
+  .grid{margin-top:10px;display:grid;gap:14px;grid-template-columns:repeat(1,minmax(0,1fr))}
+  @media(min-width:700px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+  @media(min-width:1000px){.grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+  .card{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:14px;display:flex;flex-direction:column;gap:10px;min-height:220px}
+  .title{font-weight:700;margin:0;letter-spacing:-.01em}
+  .tags{display:flex;flex-wrap:wrap;gap:6px}
+  .muted{color:var(--muted)}
+  .pre{white-space:pre-wrap;background:#0c1218;border:1px solid var(--ring);color:#cce0f3;border-radius:12px;padding:10px;font-size:13px;line-height:1.4;max-height:132px;overflow:auto}
+  .actions{display:flex;gap:8px;justify-content:space-between;align-items:center}
+  .alert{margin-top:10px;color:#f0b}
+  footer{margin:32px 0;color:#8798aa;text-align:center;font-size:12px}
+  /* modal */
+  .modal{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(0,0,0,.5);padding:16px;z-index:50}
+  .modal.open{display:flex}
+  .modal-body{background:#0e141a;border:1px solid var(--border);border-radius:16px;padding:16px;max-width:720px;width:100%}
+  .modal-body .pre{max-height:60vh}
+</style>
 </head>
 <body>
   <div class="wrap">
@@ -43,7 +55,7 @@
       <p class="sub">Chargeback wins, ClientReach follow-ups, Lead Gen outreach, Ops SOPs—under one roof.
         Copy-paste templates with evidence checklists and quickstarts.</p>
       <div class="row">
-        <a class="btn accent" href="https://buy.stripe.com/fZudR89pEfa68sDgSs5Ne00">⚡ Buy All-Access ($99/mo)</a>
+        <a class="btn accent" href="https://buy.stripe.com/fZudR89pEfa68sDgSs5Ne00" target="_blank" rel="noopener">⚡ Buy All-Access ($99/mo)</a>
         <a class="btn ghost" href="#sample">📦 Free Sample</a>
         <span class="pill">Secure checkout via Stripe</span>
         <span class="pill">14-day win or refund</span>
@@ -53,8 +65,10 @@
         <input id="q" placeholder="Search all kits…" style="flex:1;min-width:160px" />
         <select id="tag"></select>
         <span class="pill" id="count">0 items</span>
+        <span class="pill" id="source">Loading…</span>
       </div>
 
+      <div class="tabs" id="tabs"></div>
       <div id="warn" class="alert" hidden></div>
     </section>
 
@@ -65,87 +79,181 @@
   <!-- Embedded fallback dataset (used only if library.json fetch fails) -->
   <script id="embedded-library" type="application/json">[
     {
-      "id": "cb-visa-10-4",
-      "category": "Chargebacks",
-      "title": "Chargeback Win Kit — Visa 10.4 (Fraud)",
-      "tags": ["Disputes","Operations"],
-      "rating": 5,
-      "price": 99,
-      "buyUrl": "https://buy.stripe.com/fZudR89pEfa68sDgSs5Ne00",
-      "prompt": "Draft a Visa 10.4 representment for {{order_id}} {{amount}} {{order_date}}. Map evidence to 10.4 criteria. Include: 3-D Secure data, AVS/CVV, IP/device, delivery proof, prior comms. Close with issuer guidance."
+      "id":"cb-visa-10-4",
+      "category":"Chargebacks",
+      "title":"Chargeback Win Kit — Visa 10.4 (Fraud)",
+      "tags":["Disputes","Operations"],
+      "rating":5,
+      "price":99,
+      "buyUrl":"https://buy.stripe.com/fZudR89pEfa68sDgSs5Ne00",
+      "prompt":"Draft a Visa 10.4 representment for {{order_id}} {{amount}} {{order_date}}. Map evidence to 10.4 criteria. Include: 3-D Secure data, AVS/CVV, IP/device, delivery proof, prior comms. Close with issuer guidance."
     }
   ]</script>
 
-  <script>
-    const GRID = document.getElementById('grid');
-    const TAG = document.getElementById('tag');
-    const Q = document.getElementById('q');
-    const COUNT = document.getElementById('count');
-    const WARN = document.getElementById('warn');
-    let ALL = [];
+  <div class="modal" id="preview">
+    <div class="modal-body">
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:8px">
+        <h3 id="pv-title" style="margin:0;font-weight:700"></h3>
+        <button class="btn ghost" onclick="closePreview()">Close</button>
+      </div>
+      <div id="pv-tags" class="tags" style="margin-bottom:8px"></div>
+      <pre id="pv-body" class="pre"></pre>
+      <div class="actions" style="margin-top:8px">
+        <button class="btn" id="pv-copy">Copy</button>
+        <a class="btn ghost" id="pv-buy" target="_blank" rel="noopener">Buy →</a>
+      </div>
+    </div>
+  </div>
 
-    function unique(arr){ return Array.from(new Set(arr)); }
-    function render(){
-      const q = (Q.value || '').toLowerCase().trim();
-      const tag = TAG.value || '';
-      const filtered = ALL
-        .filter(x => tag ? (x.tags||[]).includes(tag) : true)
-        .filter(x => {
-          const hay = (x.title + ' ' + x.prompt + ' ' + (x.tags||[]).join(' ')).toLowerCase();
-          return q ? hay.includes(q) : true;
-        })
-        .sort((a,b)=> (b.rating||0) - (a.rating||0));
-      COUNT.textContent = filtered.length + (filtered.length===1 ? ' item' : ' items');
-      GRID.innerHTML = filtered.map(x => `
-        <article class="card">
-          <h3 class="title">${escapeHtml(x.title || '')}</h3>
-          <div class="tags">${(x.tags||[]).map(t => `<span class="pill">#${escapeHtml(t)}</span>`).join('')}</div>
-          <pre class="pre">${escapeHtml(String(x.prompt || ''))}</pre>
-          <div class="actions">
-            <button class="btn" onclick="copy('${b64(String(x.prompt||''))}')">Copy</button>
-            <a class="btn ghost" href="${x.buyUrl || 'https://buy.stripe.com/fZudR89pEfa68sDgSs5Ne00'}" target="_blank" rel="noopener">Buy →</a>
+<script>
+  const STRIPE_ALL = "https://buy.stripe.com/fZudR89pEfa68sDgSs5Ne00";
+  const GRID  = document.getElementById('grid');
+  const TAG   = document.getElementById('tag');
+  const Q     = document.getElementById('q');
+  const COUNT = document.getElementById('count');
+  const SRC   = document.getElementById('source');
+  const WARN  = document.getElementById('warn');
+  const TABS  = document.getElementById('tabs');
+
+  let ALL = [];
+  let ACTIVE_CAT = ""; // "", "Chargebacks", "ClientReach", "LeadGen", "Ops"
+
+  const CATS = ["All","Chargebacks","ClientReach","LeadGen","Ops"];
+  function slug(s){return s.toLowerCase().replace(/\s+/g,'');}
+  function escapeHtml(s){return String(s).replaceAll('&','&amp;').replaceAll('<','&lt;');}
+  function unique(arr){return Array.from(new Set(arr));}
+
+  function hashId(title,prompt){
+    let h=5381, s=(title||"")+ "::" +(prompt||"");
+    for(let i=0;i<s.length;i++) h=((h<<5)+h) ^ s.charCodeAt(i);
+    return "id-" + (h>>>0).toString(36);
+  }
+
+  function setTabs(){
+    TABS.innerHTML = CATS.map(c=>{
+      const active = (c==="All" && !ACTIVE_CAT) || c===ACTIVE_CAT;
+      return `<button class="tab ${active?'active':''}" data-cat="${c==='All'?'':c}">${c}</button>`;
+    }).join('');
+    TABS.querySelectorAll('.tab').forEach(btn=>{
+      btn.addEventListener('click', ()=>{
+        ACTIVE_CAT = btn.dataset.cat || "";
+        location.hash = ACTIVE_CAT? `/${slug(ACTIVE_CAT)}` : "/";
+        render();
+      });
+    });
+  }
+
+  function populateTags(list){
+    const tags = unique(list.flatMap(x=>x.tags||[])).sort();
+    TAG.innerHTML = ['<option value="">All tags</option>', ...tags.map(t=>`<option>${escapeHtml(t)}</option>`)].join('');
+  }
+
+  function render(){
+    const q = (Q.value||'').toLowerCase().trim();
+    const tag = TAG.value||'';
+    const filtered = ALL
+      .filter(x => ACTIVE_CAT ? (x.category===ACTIVE_CAT) : true)
+      .filter(x => tag ? (x.tags||[]).includes(tag) : true)
+      .filter(x => {
+        const hay = (x.title + ' ' + x.prompt + ' ' + (x.tags||[]).join(' ')).toLowerCase();
+        return q ? hay.includes(q) : true;
+      })
+      .sort((a,b)=> (b.rating||0)-(a.rating||0));
+
+    COUNT.textContent = filtered.length + (filtered.length===1?' item':' items');
+    GRID.innerHTML = filtered.map(x => `
+      <article class="card">
+        <h3 class="title">${escapeHtml(x.title||'')}</h3>
+        <div class="tags">${(x.tags||[]).map(t=>`<span class="pill">#${escapeHtml(t)}</span>`).join('')}</div>
+        <pre class="pre">${escapeHtml(String(x.prompt||''))}</pre>
+        <div class="actions">
+          <div style="display:flex;gap:8px">
+            <button class="btn" onclick='copy("${b64(String(x.prompt||""))}")'>Copy</button>
+            <button class="btn ghost" onclick='openPreview("${b64(JSON.stringify(x))}")'>Preview</button>
           </div>
-        </article>
-      `).join('');
-    }
-    function b64(s){ return btoa(unescape(encodeURIComponent(s))); }
-    function copy(b64s){
-      const s = decodeURIComponent(escape(atob(b64s)));
-      navigator.clipboard.writeText(s).then(()=>{ COUNT.textContent='Copied ✓'; setTimeout(()=>render(),800); })
-        .catch(()=>{ alert('Copy blocked. Long-press to select and copy.'); });
-    }
-    function escapeHtml(s){ return s.replaceAll('&','&amp;').replaceAll('<','&lt;'); }
+          <a class="btn ghost" href="${x.buyUrl || STRIPE_ALL}" target="_blank" rel="noopener">Buy →</a>
+        </div>
+      </article>
+    `).join('');
+  }
 
-    function populateTags(list){
-      const tags = unique(list.flatMap(x => x.tags || [])).sort();
-      TAG.innerHTML = ['<option value="">All tags</option>', ...tags.map(t=>`<option>${t}</option>`)].join('');
+  function b64(s){ return btoa(unescape(encodeURIComponent(s))); }
+  function ub64(s){ return decodeURIComponent(escape(atob(s))); }
+
+  async function copy(b){
+    const s = ub64(b);
+    try { await navigator.clipboard.writeText(s); COUNT.textContent='Copied ✓'; setTimeout(render,800); }
+    catch { alert('Copy blocked. Long-press to select and copy.'); }
+  }
+
+  // Preview modal
+  function openPreview(b){
+    const x = JSON.parse(ub64(b));
+    document.getElementById('pv-title').textContent = x.title||'';
+    document.getElementById('pv-tags').innerHTML = (x.tags||[]).map(t=>`<span class="pill">#${escapeHtml(t)}</span>`).join('');
+    document.getElementById('pv-body').textContent = String(x.prompt||'');
+    document.getElementById('pv-buy').href = x.buyUrl || STRIPE_ALL;
+    document.getElementById('pv-copy').onclick = ()=> copy(b64(String(x.prompt||'')));
+    document.getElementById('preview').classList.add('open');
+  }
+  function closePreview(){ document.getElementById('preview').classList.remove('open'); }
+
+  async function load(){
+    setTabs();
+    // deep link: #/chargebacks etc.
+    const hash = (location.hash || "").toLowerCase();
+    if (hash.startsWith("#/")) {
+      const key = hash.slice(2);
+      const found = CATS.find(c => slug(c) === key);
+      ACTIVE_CAT = (found && found!=="All") ? found : "";
     }
 
-    async function load(){
+    try {
+      const res = await fetch('./library.json?ts=' + Date.now(), { cache: 'no-store' });
+      const ct = (res.headers.get('content-type') || '').toLowerCase();
+      if (!res.ok || !ct.includes('application/json')) throw new Error('Bad library.json response ('+res.status+', '+ct+')');
+      const data = await res.json();
+      if (!Array.isArray(data)) throw new Error('library.json must be an array');
+
+      ALL = data.map(x=>({
+        id: x.id || hashId(x.title,x.prompt),
+        category: x.category || "",
+        title: x.title || "",
+        tags: Array.isArray(x.tags)? x.tags : [],
+        rating: Number.isFinite(x.rating)? x.rating : 5,
+        price: Number.isFinite(x.price)? x.price : null,
+        buyUrl: x.buyUrl || STRIPE_ALL,
+        prompt: String(x.prompt || "")
+      }));
+
+      SRC.textContent = 'Source: library.json';
+    } catch (e) {
+      console.warn('library.json fetch failed → using embedded fallback', e);
+      WARN.hidden = false;
+      WARN.textContent = 'Using embedded data (library.json not reachable).';
       try {
-        const res = await fetch('./library.json?ts=' + Date.now(), { cache: 'no-store' });
-        if (!res.ok) throw new Error('HTTP ' + res.status);
-        const data = await res.json();
-        if (!Array.isArray(data)) throw new Error('library.json must be an array');
-        ALL = data;
-      } catch (e) {
-        WARN.hidden = false;
-        WARN.textContent = 'Using embedded data (library.json not reachable).';
-        // Fallback to embedded JSON
-        try {
-          const raw = document.getElementById('embedded-library')?.textContent || '[]';
-          ALL = JSON.parse(raw);
-        } catch {
-          ALL = [];
-        }
-      }
-      populateTags(ALL);
-      render();
+        const raw = document.getElementById('embedded-library')?.textContent || '[]';
+        ALL = JSON.parse(raw);
+        ALL = ALL.map(x=>({ ...x, buyUrl: x.buyUrl || STRIPE_ALL, id: x.id || hashId(x.title,x.prompt) }));
+      } catch { ALL = []; }
+      SRC.textContent = 'Source: embedded';
     }
 
-    Q.addEventListener('input', render);
-    TAG.addEventListener('change', render);
-    load();
-  </script>
+    populateTags(ALL);
+    render();
+  }
+
+  Q.addEventListener('input', render);
+  TAG.addEventListener('change', render);
+  window.addEventListener('hashchange', ()=>{ // keep tabs in sync with deep links
+    const key = (location.hash||"").toLowerCase().replace(/^#\//,'');
+    const found = CATS.find(c=> slug(c)===key);
+    ACTIVE_CAT = (found && found!=="All") ? found : "";
+    setTabs();
+    render();
+  });
+
+  load();
+</script>
 </body>
 </html>
