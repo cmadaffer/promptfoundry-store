@@ -3,7 +3,7 @@
     "id": "cb-visa-10-4",
     "category": "Chargebacks",
     "title": "Chargeback Win Kit — Visa 10.4 (Fraud)",
-    "tags": ["Disputes","Operations"],
+    "tags": ["Disputes", "Operations"],
     "rating": 5,
     "price": 99,
     "buyUrl": "https://buy.stripe.com/fZudR89pEfa68sDgSs5Ne00",
@@ -13,17 +13,17 @@
     "id": "cb-mc-4853",
     "category": "Chargebacks",
     "title": "Chargeback Win Kit — Mastercard 4853",
-    "tags": ["Disputes","Operations"],
+    "tags": ["Disputes", "Operations"],
     "rating": 5,
     "price": 99,
     "buyUrl": "https://buy.stripe.com/fZudR89pEfa68sDgSs5Ne00",
-    "prompt": "Draft a Mastercard 4853 representment for {{order_id}} {{amount}} {{order_date}}. Map evidence to the 4853 doc list. Include identity/auth evidence, usage logs, delivery, support thread, terms consent."
+    "prompt": "Draft a Mastercard 4853 representment for {{order_id}} {{amount}} {{order_date}}. Map evidence to the 4853 documentation list. Include identity/auth evidence, usage logs, delivery, support thread, refund policy, terms consent."
   },
   {
     "id": "cb-amex-unauth",
     "category": "Chargebacks",
     "title": "Chargeback Win Kit — Amex Unauthorized",
-    "tags": ["Disputes","Operations"],
+    "tags": ["Disputes", "Operations"],
     "rating": 5,
     "price": 99,
     "buyUrl": "https://buy.stripe.com/fZudR89pEfa68sDgSs5Ne00",
@@ -33,7 +33,7 @@
     "id": "cr-overdue-nudge",
     "category": "ClientReach",
     "title": "ClientReach — Overdue Invoice Nudge",
-    "tags": ["ClientReach","Cold Email"],
+    "tags": ["ClientReach", "Cold Email"],
     "rating": 5,
     "price": 49,
     "buyUrl": "https://buy.stripe.com/fZudR89pEfa68sDgSs5Ne00",
@@ -43,7 +43,7 @@
     "id": "lg-local-75",
     "category": "LeadGen",
     "title": "Lead Gen — Local Services (≤75 words)",
-    "tags": ["LeadGen","Cold Email"],
+    "tags": ["LeadGen", "Cold Email"],
     "rating": 5,
     "price": 49,
     "buyUrl": "https://buy.stripe.com/fZudR89pEfa68sDgSs5Ne00",
@@ -57,6 +57,6 @@
     "rating": 5,
     "price": 59,
     "buyUrl": "https://buy.stripe.com/fZudR89pEfa68sDgSs5Ne00",
-    "prompt": "Turn a process description into an SOP with Roles, Tools, Steps, QA checks, and Risks. Output Markdown. Ask for any missing inputs before drafting."
+    "prompt": "Turn a process description into an SOP with Roles, Tools, Steps, QA checks, and Risks. Output Markdown. Ask for missing inputs before drafting."
   }
 ]
