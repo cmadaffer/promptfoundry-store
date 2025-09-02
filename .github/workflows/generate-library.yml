@@ -1,32 +1,34 @@
-name: Generate library.json
+name: Validate & tidy library.json
 
 on:
-  schedule:
-    - cron: '0 14 * * 1'   # Every Monday 14:00 UTC (~10am ET)
   workflow_dispatch:
+  schedule:
+    - cron: "0 14 * * 1"  # Mondays 14:00 UTC
+
+permissions:
+  contents: write
 
 jobs:
-  build:
+  validate:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write  # allows pushing with GITHUB_TOKEN
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version: 20
-      - name: Generate
+
+      - name: Validate / normalize library.json
         run: |
-          mkdir -p auto
           node auto/build-library.mjs
-      - name: Commit & push if changed
+
+      - name: Commit changes (if any)
         run: |
-          if [[ -n "$(git status --porcelain)" ]]; then
-            git config user.name "PromptFoundry Bot"
-            git config user.email "bot@users.noreply.github.com"
+          git config user.name "PromptFoundry Bot"
+          git config user.email "bot@users.noreply.github.com"
+          if ! git diff --quiet; then
             git add library.json
-            git commit -m "chore: auto-generate library.json [skip ci]"
+            git commit -m "chore: normalize library.json [skip ci]"
             git push
           else
-            echo "No changes"
+            echo "No changes to commit."
           fi
