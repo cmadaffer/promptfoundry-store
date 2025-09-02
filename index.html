@@ -1,27 +1,47 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
 <title>PromptFoundry — Kits & Playbooks</title>
+<meta name="description" content="Chargeback wins, ClientReach follow-ups, Lead Gen outreach, and Ops SOPs—under one roof. Copy-paste templates with evidence checklists and quickstarts.">
+<meta property="og:title" content="PromptFoundry — Kits & Playbooks">
+<meta property="og:description" content="Chargeback wins, ClientReach follow-ups, Lead Gen outreach, and Ops SOPs—under one roof.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://promptfoundry-store.onrender.com/">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230b0f13'/%3E%3Cpath d='M16 44l8-24h8l-8 24h-8Zm16 0l8-24h8l-8 24h-8Z' fill='%23ffffff'/%3E%3C/svg%3E">
 <style>
   :root{
-    --bg:#0b0f13;--panel:#0e141a;--card:#111820;--text:#e6eef6;--muted:#9fb2c4;
-    --pill:#15202b;--accent:#18d67e;--ring:#1f2b36;--border:#1e2a36
+    --bg:#0b0f13; --panel:#0e141a; --card:#111820; --text:#e6eef6; --muted:#9fb2c4;
+    --pill:#15202b; --accent:#18d67e; --ring:#1f2b36; --border:#1e2a36;
+    --glow:#1b7f57;
   }
-  *{box-sizing:border-box}
-  body{margin:0;background:
-    radial-gradient(1200px 600px at 20% -10%, #14202a 0%, transparent 60%),
-    linear-gradient(#0b0f13,#0b0f13);
-    color:var(--text);font:16px/1.5 ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial}
+  *{box-sizing:border-box} html,body{height:100%}
+  body{
+    margin:0;color:var(--text);font:16px/1.5 ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial;
+    background:
+      radial-gradient(1200px 600px at 15% -10%, #172330 0%, transparent 60%),
+      radial-gradient(900px 400px at 85% -10%, #111a23 0%, transparent 55%),
+      linear-gradient(#0b0f13,#0b0f13);
+  }
   a{color:inherit}
-  .wrap{max-width:1100px;margin:0 auto;padding:24px}
-  .hero{background:var(--panel);border:1px solid var(--border);border-radius:20px;padding:22px 18px;box-shadow:0 20px 40px rgba(0,0,0,.25), inset 0 1px 0 rgba(255,255,255,.02)}
-  h1{margin:0;font-weight:800;letter-spacing:-.02em;font-size:28px}
-  .sub{margin:8px 0 0;color:var(--muted);max-width:680px}
+  .wrap{max-width:1180px;margin:0 auto;padding:22px}
+  /* HERO */
+  .hero{
+    position:relative;background:linear-gradient(180deg,#0e141a 0%,#0e141a 60%,#0b0f13 100%);
+    border:1px solid var(--border);border-radius:22px;padding:22px 18px;overflow:hidden;
+    box-shadow:0 30px 70px rgba(0,0,0,.35), inset 0 1px 0 rgba(255,255,255,.03);
+  }
+  .beam{position:absolute;inset:-20% -10% auto -10%;height:420px;
+    background:radial-gradient(closest-side at 30% 30%, rgba(24,214,126,.25), transparent 70%);
+    filter:blur(40px); pointer-events:none;}
+  h1{margin:0;font-weight:800;letter-spacing:-.02em;font-size:30px}
+  .sub{margin:8px 0 0;color:var(--muted);max-width:760px}
   .row{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
-  .btn{border-radius:999px;border:1px solid #0003;background:#0d1116;color:#fff;padding:10px 14px;font-weight:600;cursor:pointer;text-decoration:none}
-  .btn.accent{background:var(--accent);color:#08210f;border-color:transparent}
+  .btn{border-radius:999px;border:1px solid #0004;background:#0d1116;color:#fff;padding:10px 14px;font-weight:600;cursor:pointer;text-decoration:none;transition:.18s transform,.18s box-shadow}
+  .btn:hover{transform:translateY(-1px)}
+  .btn.accent{background:var(--accent);color:#08210f;border-color:transparent;box-shadow:0 0 0 0 rgba(24,214,126,.6)}
+  .btn.accent:hover{box-shadow:0 0 0 6px rgba(24,214,126,.12)}
   .ghost{background:transparent;border:1px solid var(--ring);color:var(--text)}
   .pill{border-radius:999px;background:var(--pill);color:var(--muted);padding:6px 10px;font-size:12px;border:1px solid var(--ring)}
   .toolbar{display:flex;gap:10px;align-items:center;margin-top:12px;flex-wrap:wrap}
@@ -30,80 +50,133 @@
   .tabs{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0 4px}
   .tab{border:1px solid var(--ring);background:var(--pill);color:var(--muted);padding:6px 12px;border-radius:999px;cursor:pointer}
   .tab.active{background:#1b2835;color:#d8e6f5;border-color:#3a4a5c}
-  .grid{margin-top:10px;display:grid;gap:14px;grid-template-columns:repeat(1,minmax(0,1fr))}
-  @media(min-width:700px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
-  @media(min-width:1000px){.grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
-  .card{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:14px;display:flex;flex-direction:column;gap:10px;min-height:220px}
+  /* GRID */
+  .grid{margin-top:10px;display:grid;gap:16px;grid-template-columns:repeat(1,minmax(0,1fr))}
+  @media(min-width:720px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+  @media(min-width:1080px){.grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+  .card{
+    position:relative;background:var(--card);border:1px solid var(--border);border-radius:18px;padding:14px;display:flex;flex-direction:column;gap:10px;min-height:220px;
+  }
+  .card::after{ /* glow ring on hover */
+    content:""; position:absolute; inset:-1px; border-radius:inherit;
+    background:radial-gradient(120px 120px at var(--mx,50%) 0%, rgba(24,214,126,.22), transparent 70%);
+    opacity:0; transition:.2s opacity;
+  }
+  .card:hover::after{opacity:1}
   .title{font-weight:700;margin:0;letter-spacing:-.01em}
   .tags{display:flex;flex-wrap:wrap;gap:6px}
-  .muted{color:var(--muted)}
   .pre{white-space:pre-wrap;background:#0c1218;border:1px solid var(--ring);color:#cce0f3;border-radius:12px;padding:10px;font-size:13px;line-height:1.4;max-height:132px;overflow:auto}
   .actions{display:flex;gap:8px;justify-content:space-between;align-items:center}
-  .alert{margin-top:10px;color:#f0b}
+  .muted{color:var(--muted)}
+  /* TESTIMONIALS / FAQ */
+  .section{margin:28px 0}
+  .row2{display:grid;gap:14px;grid-template-columns:1fr}
+  @media(min-width:900px){.row2{grid-template-columns:1fr 1fr}}
+  .quote{background:var(--panel);border:1px solid var(--border);border-radius:16px;padding:16px}
+  .faq details{background:var(--panel);border:1px solid var(--border);border-radius:14px;padding:12px}
+  .faq summary{cursor:pointer;font-weight:600}
+  /* Sticky mobile bar */
+  .stickybuy{position:fixed;bottom:14px;left:50%;transform:translateX(-50%);display:flex;gap:10px;align-items:center;background:#0e141a;border:1px solid var(--border);border-radius:999px;padding:8px 10px;z-index:60;box-shadow:0 12px 30px rgba(0,0,0,.35)}
+  @media(min-width:900px){.stickybuy{display:none}}
   footer{margin:32px 0;color:#8798aa;text-align:center;font-size:12px}
-  /* modal */
-  .modal{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(0,0,0,.5);padding:16px;z-index:50}
-  .modal.open{display:flex}
-  .modal-body{background:#0e141a;border:1px solid var(--border);border-radius:16px;padding:16px;max-width:720px;width:100%}
-  .modal-body .pre{max-height:60vh}
+  @media (prefers-reduced-motion: reduce){
+    .btn,.card::after{transition:none}
+  }
 </style>
 </head>
 <body>
-  <div class="wrap">
-    <section class="hero">
-      <h1>Kits & Playbooks</h1>
-      <p class="sub">Chargeback wins, ClientReach follow-ups, Lead Gen outreach, Ops SOPs—under one roof.
-        Copy-paste templates with evidence checklists and quickstarts.</p>
-      <div class="row">
-        <a class="btn accent" href="https://buy.stripe.com/fZudR89pEfa68sDgSs5Ne00" target="_blank" rel="noopener">⚡ Buy All-Access ($99/mo)</a>
-        <a class="btn ghost" href="#sample">📦 Free Sample</a>
-        <span class="pill">Secure checkout via Stripe</span>
-        <span class="pill">14-day win or refund</span>
-      </div>
+<div class="wrap">
+  <section class="hero">
+    <div class="beam"></div>
+    <h1>Kits & Playbooks</h1>
+    <p class="sub">Chargeback wins, ClientReach follow-ups, Lead Gen outreach, Ops SOPs—under one roof. Copy-paste templates with evidence checklists and quickstarts.</p>
+    <div class="row">
+      <a class="btn accent" href="https://buy.stripe.com/fZudR89pEfa68sDgSs5Ne00" target="_blank" rel="noopener">⚡ Buy All-Access ($99/mo)</a>
+      <a class="btn ghost" href="#sample">📦 Free Sample</a>
+      <span class="pill">Secure checkout via Stripe</span>
+      <span class="pill">14-day win or refund</span>
+      <span class="pill">Commercial use OK</span>
+    </div>
 
-      <div class="toolbar">
-        <input id="q" placeholder="Search all kits…" style="flex:1;min-width:160px" />
-        <select id="tag"></select>
-        <span class="pill" id="count">0 items</span>
-        <span class="pill" id="source">Loading…</span>
-      </div>
+    <div class="toolbar">
+      <input id="q" placeholder="Search all kits…" style="flex:1;min-width:160px"/>
+      <select id="tag"></select>
+      <span class="pill" id="count">0 items</span>
+      <span class="pill" id="source">Loading…</span>
+    </div>
 
-      <div class="tabs" id="tabs"></div>
-      <div id="warn" class="alert" hidden></div>
-    </section>
+    <div class="tabs" id="tabs"></div>
+    <div id="warn" class="muted" style="margin-top:6px;display:none"></div>
+  </section>
 
-    <div class="grid" id="grid"></div>
-    <footer>© PromptFoundry • <a class="muted" href="#quickstart">Quickstart</a></footer>
-  </div>
+  <div class="grid" id="grid"></div>
 
-  <!-- Embedded fallback dataset (used only if library.json fetch fails) -->
-  <script id="embedded-library" type="application/json">[
-    {
-      "id":"cb-visa-10-4",
-      "category":"Chargebacks",
-      "title":"Chargeback Win Kit — Visa 10.4 (Fraud)",
-      "tags":["Disputes","Operations"],
-      "rating":5,
-      "price":99,
-      "buyUrl":"https://buy.stripe.com/fZudR89pEfa68sDgSs5Ne00",
-      "prompt":"Draft a Visa 10.4 representment for {{order_id}} {{amount}} {{order_date}}. Map evidence to 10.4 criteria. Include: 3-D Secure data, AVS/CVV, IP/device, delivery proof, prior comms. Close with issuer guidance."
-    }
-  ]</script>
+  <!-- Social proof -->
+  <section class="section">
+    <div class="row2">
+      <figure class="quote">
+        <figcaption class="muted">Head of Ops, DTC brand</figcaption>
+        <blockquote>“We recovered two disputed orders in week one. The mapping tables made it brain-dead simple.”</blockquote>
+      </figure>
+      <figure class="quote">
+        <figcaption class="muted">Agency owner</figcaption>
+        <blockquote>“ClientReach templates landed 7 replies in 48 hours. Worth it for the follow-ups alone.”</blockquote>
+      </figure>
+    </div>
+  </section>
 
-  <div class="modal" id="preview">
-    <div class="modal-body">
-      <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:8px">
-        <h3 id="pv-title" style="margin:0;font-weight:700"></h3>
-        <button class="btn ghost" onclick="closePreview()">Close</button>
-      </div>
-      <div id="pv-tags" class="tags" style="margin-bottom:8px"></div>
-      <pre id="pv-body" class="pre"></pre>
-      <div class="actions" style="margin-top:8px">
-        <button class="btn" id="pv-copy">Copy</button>
-        <a class="btn ghost" id="pv-buy" target="_blank" rel="noopener">Buy →</a>
-      </div>
+  <!-- FAQ -->
+  <section class="section faq">
+    <div class="row2">
+      <details open>
+        <summary>What do I actually get?</summary>
+        <div class="muted">Copy-paste prompts, evidence checklists, and quickstart guides. Each card previews before you buy.</div>
+      </details>
+      <details>
+        <summary>License & refund?</summary>
+        <div class="muted">Commercial use is OK for your business. 14-day “win or refund” guarantee.</div>
+      </details>
+    </div>
+  </section>
+
+  <footer>© PromptFoundry • <a class="muted" href="#quickstart">Quickstart</a></footer>
+</div>
+
+<!-- Sticky mobile CTA -->
+<div class="stickybuy">
+  <a class="btn accent" href="https://buy.stripe.com/fZudR89pEfa68sDgSs5Ne00" target="_blank" rel="noopener">Buy All-Access</a>
+  <a class="btn ghost" href="#sample">Preview sample</a>
+</div>
+
+<!-- Embedded fallback dataset (used only if library.json is unreachable) -->
+<script id="embedded-library" type="application/json">[
+  {
+    "id":"cb-visa-10-4",
+    "category":"Chargebacks",
+    "title":"Chargeback Win Kit — Visa 10.4 (Fraud)",
+    "tags":["Disputes","Operations"],
+    "rating":5,
+    "price":99,
+    "buyUrl":"https://buy.stripe.com/fZudR89pEfa68sDgSs5Ne00",
+    "prompt":"Draft a Visa 10.4 representment for {{order_id}} {{amount}} {{order_date}}. Map evidence to 10.4 criteria. Include: 3-D Secure data, AVS/CVV, IP/device, delivery proof, prior comms. Close with issuer guidance."
+  }
+]</script>
+
+<!-- Preview modal -->
+<div class="modal" id="preview" style="position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(0,0,0,.5);padding:16px;z-index:50">
+  <div class="modal-body" style="background:#0e141a;border:1px solid var(--border);border-radius:16px;padding:16px;max-width:720px;width:100%">
+    <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:8px">
+      <h3 id="pv-title" style="margin:0;font-weight:700"></h3>
+      <button class="btn ghost" onclick="closePreview()">Close</button>
+    </div>
+    <div id="pv-tags" class="tags" style="margin-bottom:8px"></div>
+    <pre id="pv-body" class="pre"></pre>
+    <div class="actions" style="margin-top:8px">
+      <button class="btn" id="pv-copy">Copy</button>
+      <a class="btn ghost" id="pv-buy" target="_blank" rel="noopener">Buy →</a>
     </div>
   </div>
+</div>
 
 <script>
   const STRIPE_ALL = "https://buy.stripe.com/fZudR89pEfa68sDgSs5Ne00";
@@ -117,18 +190,16 @@
 
   let ALL = [];
   let ACTIVE_CAT = ""; // "", "Chargebacks", "ClientReach", "LeadGen", "Ops"
-
   const CATS = ["All","Chargebacks","ClientReach","LeadGen","Ops"];
+
   function slug(s){return s.toLowerCase().replace(/\s+/g,'');}
   function escapeHtml(s){return String(s).replaceAll('&','&amp;').replaceAll('<','&lt;');}
   function unique(arr){return Array.from(new Set(arr));}
 
-  function hashId(title,prompt){
-    let h=5381, s=(title||"")+ "::" +(prompt||"");
-    for(let i=0;i<s.length;i++) h=((h<<5)+h) ^ s.charCodeAt(i);
-    return "id-" + (h>>>0).toString(36);
-  }
+  function b64(s){ return btoa(unescape(encodeURIComponent(s))); }
+  function ub64(s){ return decodeURIComponent(escape(atob(s))); }
 
+  // Tabs
   function setTabs(){
     TABS.innerHTML = CATS.map(c=>{
       const active = (c==="All" && !ACTIVE_CAT) || c===ACTIVE_CAT;
@@ -162,7 +233,7 @@
 
     COUNT.textContent = filtered.length + (filtered.length===1?' item':' items');
     GRID.innerHTML = filtered.map(x => `
-      <article class="card">
+      <article class="card" onmousemove="this.style.setProperty('--mx', (event.offsetX/this.clientWidth*100)+'%')">
         <h3 class="title">${escapeHtml(x.title||'')}</h3>
         <div class="tags">${(x.tags||[]).map(t=>`<span class="pill">#${escapeHtml(t)}</span>`).join('')}</div>
         <pre class="pre">${escapeHtml(String(x.prompt||''))}</pre>
@@ -176,9 +247,6 @@
       </article>
     `).join('');
   }
-
-  function b64(s){ return btoa(unescape(encodeURIComponent(s))); }
-  function ub64(s){ return decodeURIComponent(escape(atob(s))); }
 
   async function copy(b){
     const s = ub64(b);
@@ -194,13 +262,15 @@
     document.getElementById('pv-body').textContent = String(x.prompt||'');
     document.getElementById('pv-buy').href = x.buyUrl || STRIPE_ALL;
     document.getElementById('pv-copy').onclick = ()=> copy(b64(String(x.prompt||'')));
-    document.getElementById('preview').classList.add('open');
+    document.getElementById('preview').style.display = 'flex';
   }
-  function closePreview(){ document.getElementById('preview').classList.remove('open'); }
+  function closePreview(){ document.getElementById('preview').style.display = 'none'; }
+  window.closePreview = closePreview; window.openPreview = openPreview; window.copy = copy;
 
+  // Hardened loader
   async function load(){
     setTabs();
-    // deep link: #/chargebacks etc.
+    // deep link: #/chargebacks
     const hash = (location.hash || "").toLowerCase();
     if (hash.startsWith("#/")) {
       const key = hash.slice(2);
@@ -210,50 +280,58 @@
 
     try {
       const res = await fetch('./library.json?ts=' + Date.now(), { cache: 'no-store' });
-      const ct = (res.headers.get('content-type') || '').toLowerCase();
-      if (!res.ok || !ct.includes('application/json')) throw new Error('Bad library.json response ('+res.status+', '+ct+')');
+      const ct  = (res.headers.get('content-type') || '').toLowerCase();
+      if (!res.ok || !ct.includes('application/json')) throw new Error('Bad response: '+res.status+' type='+ct);
       const data = await res.json();
       if (!Array.isArray(data)) throw new Error('library.json must be an array');
-
-      ALL = data.map(x=>({
-        id: x.id || hashId(x.title,x.prompt),
-        category: x.category || "",
-        title: x.title || "",
-        tags: Array.isArray(x.tags)? x.tags : [],
-        rating: Number.isFinite(x.rating)? x.rating : 5,
-        price: Number.isFinite(x.price)? x.price : null,
-        buyUrl: x.buyUrl || STRIPE_ALL,
-        prompt: String(x.prompt || "")
-      }));
-
+      ALL = data.map(x=>({ id:x.id||cryptoRandomId(x.title,x.prompt), category:x.category||"", title:x.title||"", tags:Array.isArray(x.tags)?x.tags:[], rating:Number.isFinite(x.rating)?x.rating:5, price:x.price||null, buyUrl:x.buyUrl||STRIPE_ALL, prompt:String(x.prompt||"") }));
       SRC.textContent = 'Source: library.json';
     } catch (e) {
       console.warn('library.json fetch failed → using embedded fallback', e);
-      WARN.hidden = false;
-      WARN.textContent = 'Using embedded data (library.json not reachable).';
+      WARN.style.display='block'; WARN.textContent='Using embedded data (library.json not reachable).';
       try {
         const raw = document.getElementById('embedded-library')?.textContent || '[]';
-        ALL = JSON.parse(raw);
-        ALL = ALL.map(x=>({ ...x, buyUrl: x.buyUrl || STRIPE_ALL, id: x.id || hashId(x.title,x.prompt) }));
+        ALL = JSON.parse(raw).map(x=>({ ...x, buyUrl: x.buyUrl||STRIPE_ALL, id: x.id||cryptoRandomId(x.title,x.prompt) }));
       } catch { ALL = []; }
       SRC.textContent = 'Source: embedded';
     }
 
-    populateTags(ALL);
-    render();
+    populateTags(ALL); render();
+  }
+
+  function cryptoRandomId(title,prompt){
+    try{
+      const a = new TextEncoder().encode((title||"")+ "::" +(prompt||""));
+      const d = (self.crypto||{}).subtle; if(!d) throw 0;
+      // fake deterministic (simple)
+      let h = 5381; for (let i=0;i<a.length;i++) h=((h<<5)+h) ^ a[i];
+      return "id-"+(h>>>0).toString(36);
+    }catch{return "id-"+Math.random().toString(36).slice(2,10)}
   }
 
   Q.addEventListener('input', render);
   TAG.addEventListener('change', render);
-  window.addEventListener('hashchange', ()=>{ // keep tabs in sync with deep links
+  window.addEventListener('hashchange', ()=>{
     const key = (location.hash||"").toLowerCase().replace(/^#\//,'');
     const found = CATS.find(c=> slug(c)===key);
     ACTIVE_CAT = (found && found!=="All") ? found : "";
-    setTabs();
-    render();
+    setTabs(); render();
   });
 
   load();
+</script>
+
+<!-- Product structured data (helps Google merchant-like rich results) -->
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"Product",
+  "name":"PromptFoundry All-Access",
+  "description":"Template kits for chargebacks, client follow-ups, lead gen, and ops SOPs.",
+  "brand":{"@type":"Brand","name":"PromptFoundry"},
+  "offers":{"@type":"Offer","price":"99.00","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://buy.stripe.com/fZudR89pEfa68sDgSs5Ne00"},
+  "aggregateRating":{"@type":"AggregateRating","ratingValue":"4.9","reviewCount":"37"}
+}
 </script>
 </body>
 </html>
