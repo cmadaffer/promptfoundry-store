@@ -1,187 +1,151 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>PromptFoundry — Kits & Playbooks</title>
-  <meta name="description" content="Chargeback win kits, ClientReach playbooks, Lead Gen templates, Ops SOPs. 14-day win or refund."/>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
-    :root{--bg:#0b0c0f;--card:#0f1116cc;--ink:#f8fafc;--mut:#b1b8c7;--brand:#6ee7b7;--line:#1f2430;--pill:#151924;--accent:#f59e0b;--radius:16px;--shadow:0 20px 40px rgba(0,0,0,.35)}
-    *{box-sizing:border-box} html,body{height:100%}
-    body{margin:0;color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;background:
-      radial-gradient(1200px 700px at 80% -10%, #1c2030 0%, transparent 60%),
-      radial-gradient(900px 600px at -10% 20%, #11212e 0%, transparent 55%),
-      linear-gradient(180deg, #0b0c0f 0%, #0b0c0f 100%);background-attachment:fixed;line-height:1.55}
-    .wrap{max-width:1120px;margin:0 auto;padding:24px}
-    .glass{background:var(--card);backdrop-filter:blur(14px);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow)}
-    .row{display:flex;align-items:center;justify-content:space-between;gap:16px}
-    .stack{display:flex;align-items:center;gap:12px}
-    .mut{color:var(--mut)}
-    .pill{display:inline-flex;align-items:center;gap:6px;padding:6px 10px;border-radius:999px;background:var(--pill);color:var(--ink);font-size:12px;border:1px solid var(--line);white-space:nowrap}
-    .btn{display:inline-flex;align-items:center;gap:10px;padding:12px 18px;border-radius:12px;border:1px solid transparent;cursor:pointer;font-weight:600;transition:.2s; }
-    .btn:active{transform:translateY(1px)}
-    .btn-primary{background:linear-gradient(180deg,#26c6a7,#1fa78d);color:#03110d}
-    .btn-ghost{background:#0e131a;color:var(--ink);border:1px solid #1a2231}
-    .field{background:#0e131a;border:1px solid #1a2231;color:var(--ink);padding:12px 14px;border-radius:12px;width:100%;outline:none}
-    .section{margin-top:28px}
-    .hero{display:grid;gap:28px;grid-template-columns:1.2fr .8fr}
-    @media (max-width:900px){.hero{grid-template-columns:1fr}}
-    h1{font-size:38px;line-height:1.1;margin:0} h2{font-size:22px;margin:0 0 10px} h3{font-size:16px;margin:0 0 8px}
-    .grid{display:grid;gap:14px;grid-template-columns:repeat(3,1fr)}
-    @media (max-width:1024px){.grid{grid-template-columns:repeat(2,1fr)}} @media (max-width:640px){.grid{grid-template-columns:1fr}}
-    .card{padding:16px} .tags{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0 12px}
-    .pre{white-space:pre-wrap;background:#0e131a;border:1px solid #141b26;border-radius:12px;padding:12px;color:#e5e7eb;font-size:13px}
-    .select{background:#0e131a;color:var(--ink);border:1px solid #1a2231;padding:12px;border-radius:12px}
-    .price{color:#a7f3d0;font-weight:700} .divider{height:1px;background:#151a22;margin:18px 0}
-    .toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:#0f131b;color:#e5e7eb;padding:10px 14px;border-radius:999px;border:1px solid #192030;display:none}
-    .toast.show{display:block}
-    .catbar{display:flex;gap:8px;overflow:auto;padding-bottom:4px}
-    .cat{cursor:pointer} .cat.active{outline:2px solid #1fa78d}
-    a.link{color:#93c5fd;text-decoration:none} a.link:hover{text-decoration:underline}
+    :root {
+      --bg:#0b0f13; --panel:#0e141a; --card:#111820; --text:#e6eef6; --muted:#9fb2c4;
+      --pill:#15202b; --accent:#18d67e; --ring:#1f2b36; --border:#1e2a36;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;background:radial-gradient(1200px 600px at 20% -10%, #14202a 0%, transparent 60%),linear-gradient(#0b0f13,#0b0f13);color:var(--text);font:16px/1.5 ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial}
+    .wrap{max-width:1100px;margin:0 auto;padding:24px}
+    .hero{background:var(--panel);border:1px solid var(--border);border-radius:20px;padding:22px 18px;box-shadow:0 20px 40px rgba(0,0,0,.25), inset 0 1px 0 rgba(255,255,255,.02)}
+    h1{margin:0;font-weight:800;letter-spacing:-.02em;font-size:28px}
+    .sub{margin:8px 0 0;color:var(--muted);max-width:680px}
+    .row{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
+    .btn{border-radius:999px;border:1px solid #0003;background:#0d1116;color:#fff;padding:10px 14px;font-weight:600;cursor:pointer}
+    .btn.accent{background:var(--accent);color:#08210f;border-color:transparent}
+    .pill{border-radius:999px;background:var(--pill);color:var(--muted);padding:6px 10px;font-size:12px;border:1px solid var(--ring)}
+    .grid{margin-top:18px;display:grid;gap:14px;grid-template-columns:repeat(1,minmax(0,1fr))}
+    @media (min-width:700px){ .grid{grid-template-columns:repeat(2,minmax(0,1fr))} }
+    @media (min-width:1000px){ .grid{grid-template-columns:repeat(3,minmax(0,1fr))} }
+    .card{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:14px;display:flex;flex-direction:column;gap:10px;min-height:220px}
+    .title{font-weight:700;margin:0;letter-spacing:-.01em}
+    .tags{display:flex;flex-wrap:wrap;gap:6px}
+    .muted{color:var(--muted)}
+    .pre{white-space:pre-wrap;background:#0c1218;border:1px solid var(--ring);color:#cce0f3;border-radius:12px;padding:10px;font-size:13px;line-height:1.4;max-height:132px;overflow:auto}
+    .actions{display:flex;gap:8px;justify-content:space-between;align-items:center}
+    .ghost{background:transparent;border:1px solid var(--ring);color:var(--text)}
+    .toolbar{display:flex;gap:10px;align-items:center;margin-top:12px}
+    input, select{background:#0c1218;border:1px solid var(--ring);color:var(--text);padding:10px;border-radius:12px}
+    input::placeholder{color:#6f859a}
+    footer{margin:32px 0;color:#8798aa;text-align:center;font-size:12px}
+    .alert{margin-top:10px;color:#f0b}
   </style>
 </head>
 <body>
-  <div id="toast" class="toast">Copied</div>
-
-  <header class="wrap">
-    <div class="row">
-      <div class="stack"><div class="pill" aria-hidden="true">⚒️</div><strong>PromptFoundry</strong></div>
-      <div class="stack"><span class="pill">Secure checkout via Stripe</span><span class="pill">14-day win or refund</span></div>
-    </div>
-  </header>
-
-  <main class="wrap">
-    <!-- HERO -->
-    <div class="hero glass section">
-      <div style="padding:22px">
-        <h1>Kits & Playbooks</h1>
-        <p class="mut" style="max-width:640px;margin-top:10px">
-          Chargeback wins, ClientReach follow-ups, Lead Gen outreach, Ops SOPs—under one roof. Copy-paste templates with evidence checklists and quickstarts.
-        </p>
-        <div class="row" style="gap:10px;flex-wrap:wrap;margin-top:14px">
-          <button class="btn btn-primary" id="buyAll">⚡ Buy All-Access ($99/mo)</button>
-          <button class="btn btn-ghost" id="getSample">⬇️ Free Sample</button>
-        </div>
-        <form id="emailForm" class="row" onsubmit="return captureEmail(event)" style="gap:10px;flex-wrap:wrap;margin-top:14px">
-          <input id="email" type="email" class="field" placeholder="Your email (updates & sample)" required/>
-          <button class="btn btn-ghost" type="submit">Notify me</button>
-        </form>
-        <div class="row" style="margin-top:10px;gap:10px;flex-wrap:wrap">
-          <span class="pill">Commercial use OK</span><span class="pill">1-click copy</span><span class="pill">Evidence map</span>
-        </div>
+  <div class="wrap">
+    <section class="hero">
+      <h1>Kits & Playbooks</h1>
+      <p class="sub">Chargeback wins, ClientReach follow-ups, Lead Gen outreach, Ops SOPs—under one roof.
+        Copy-paste templates with evidence checklists and quickstarts.</p>
+      <div class="row">
+        <a class="btn accent" href="https://buy.stripe.com/fZudR89pEfa68sDgSs5Ne00">⚡ Buy All-Access ($99/mo)</a>
+        <a class="btn ghost" href="#sample">📦 Free Sample</a>
+        <span class="pill">Secure checkout via Stripe</span>
+        <span class="pill">14-day win or refund</span>
       </div>
-      <div class="glass" style="padding:22px;border-radius:var(--radius);background:#0f131bcc">
-        <h2>Collections</h2>
-        <div class="divider"></div>
-        <div id="catbar" class="catbar"></div>
-        <p class="mut" style="margin-top:10px"><small>Tip: share links like <code>#/chargebacks</code> or <code>#/leadgen</code> to deep-link a collection.</small></p>
+
+      <div class="toolbar">
+        <input id="q" placeholder="Search all kits…" style="flex:1;min-width:160px" />
+        <select id="tag"></select>
+        <span class="pill" id="count">0 items</span>
       </div>
-    </div>
 
-    <!-- FILTERS -->
-    <div class="glass section" style="padding:16px">
-      <div class="row" style="gap:12px;flex-wrap:wrap">
-        <input id="search" class="field" placeholder="Search all kits…"/>
-        <select id="tag" class="select"><option value="">All tags</option></select>
-        <div class="pill" id="count">0 items</div>
-      </div>
-    </div>
+      <div id="warn" class="alert" hidden></div>
+    </section>
 
-    <!-- GRID -->
-    <div id="grid" class="grid section"></div>
+    <div class="grid" id="grid"></div>
+    <footer>© PromptFoundry • <a class="muted" href="#quickstart">Quickstart</a></footer>
+  </div>
 
-    <!-- FOOTER -->
-    <footer style="color:#8b93a7;font-size:12px;padding:28px 0 12px;text-align:center">
-      © PromptFoundry • <a class="link" href="evidence-checklist.html">Evidence checklist</a> • <a class="link" href="quickstart.html">Quickstart</a>
-    </footer>
-  </main>
+  <!-- Embedded fallback dataset (used only if library.json fetch fails) -->
+  <script id="embedded-library" type="application/json">[
+    {
+      "id": "cb-visa-10-4",
+      "category": "Chargebacks",
+      "title": "Chargeback Win Kit — Visa 10.4 (Fraud)",
+      "tags": ["Disputes","Operations"],
+      "rating": 5,
+      "price": 99,
+      "buyUrl": "https://buy.stripe.com/fZudR89pEfa68sDgSs5Ne00",
+      "prompt": "Draft a Visa 10.4 representment for {{order_id}} {{amount}} {{order_date}}. Map evidence to 10.4 criteria. Include: 3-D Secure data, AVS/CVV, IP/device, delivery proof, prior comms. Close with issuer guidance."
+    }
+  ]</script>
 
-<script>
-const BUY_ALL_URL = "https://buy.stripe.com/fZudR89pEfa68sDgSs5Ne00";
+  <script>
+    const GRID = document.getElementById('grid');
+    const TAG = document.getElementById('tag');
+    const Q = document.getElementById('q');
+    const COUNT = document.getElementById('count');
+    const WARN = document.getElementById('warn');
+    let ALL = [];
 
-const $=s=>document.querySelector(s);
-const toast=(m)=>{const t=$("#toast");t.textContent=m;t.classList.add("show");setTimeout(()=>t.classList.remove("show"),1200);};
+    function unique(arr){ return Array.from(new Set(arr)); }
+    function render(){
+      const q = (Q.value || '').toLowerCase().trim();
+      const tag = TAG.value || '';
+      const filtered = ALL
+        .filter(x => tag ? (x.tags||[]).includes(tag) : true)
+        .filter(x => {
+          const hay = (x.title + ' ' + x.prompt + ' ' + (x.tags||[]).join(' ')).toLowerCase();
+          return q ? hay.includes(q) : true;
+        })
+        .sort((a,b)=> (b.rating||0) - (a.rating||0));
+      COUNT.textContent = filtered.length + (filtered.length===1 ? ' item' : ' items');
+      GRID.innerHTML = filtered.map(x => `
+        <article class="card">
+          <h3 class="title">${escapeHtml(x.title || '')}</h3>
+          <div class="tags">${(x.tags||[]).map(t => `<span class="pill">#${escapeHtml(t)}</span>`).join('')}</div>
+          <pre class="pre">${escapeHtml(String(x.prompt || ''))}</pre>
+          <div class="actions">
+            <button class="btn" onclick="copy('${b64(String(x.prompt||''))}')">Copy</button>
+            <a class="btn ghost" href="${x.buyUrl || 'https://buy.stripe.com/fZudR89pEfa68sDgSs5Ne00'}" target="_blank" rel="noopener">Buy →</a>
+          </div>
+        </article>
+      `).join('');
+    }
+    function b64(s){ return btoa(unescape(encodeURIComponent(s))); }
+    function copy(b64s){
+      const s = decodeURIComponent(escape(atob(b64s)));
+      navigator.clipboard.writeText(s).then(()=>{ COUNT.textContent='Copied ✓'; setTimeout(()=>render(),800); })
+        .catch(()=>{ alert('Copy blocked. Long-press to select and copy.'); });
+    }
+    function escapeHtml(s){ return s.replaceAll('&','&amp;').replaceAll('<','&lt;'); }
 
-$("#buyAll").onclick=()=>window.open(BUY_ALL_URL,"_blank");
-$("#getSample").onclick=()=>downloadFile("sample.json","application/json");
+    function populateTags(list){
+      const tags = unique(list.flatMap(x => x.tags || [])).sort();
+      TAG.innerHTML = ['<option value="">All tags</option>', ...tags.map(t=>`<option>${t}</option>`)].join('');
+    }
 
-async function captureEmail(e){
-  e.preventDefault();
-  const email=$("#email").value.trim();
-  if(!email){toast("Enter email");return false;}
-  try{await navigator.clipboard.writeText(email);toast("Email copied — paste into your CRM");}catch{toast("Saved locally");}
-  const list=JSON.parse(localStorage.getItem("pf_emails")||"[]");list.push({email,ts:Date.now()});localStorage.setItem("pf_emails",JSON.stringify(list));
-  return false;
-}
-async function downloadFile(path,mime){
-  const res=await fetch(path,{cache:"no-store"}); const blob=await res.blob();
-  const url=URL.createObjectURL(blob); const a=document.createElement("a"); a.href=url; a.download=path.split("/").pop(); document.body.appendChild(a); a.click(); a.remove(); setTimeout(()=>URL.revokeObjectURL(url),800);
-}
+    async function load(){
+      try {
+        const res = await fetch('./library.json?ts=' + Date.now(), { cache: 'no-store' });
+        if (!res.ok) throw new Error('HTTP ' + res.status);
+        const data = await res.json();
+        if (!Array.isArray(data)) throw new Error('library.json must be an array');
+        ALL = data;
+      } catch (e) {
+        WARN.hidden = false;
+        WARN.textContent = 'Using embedded data (library.json not reachable).';
+        // Fallback to embedded JSON
+        try {
+          const raw = document.getElementById('embedded-library')?.textContent || '[]';
+          ALL = JSON.parse(raw);
+        } catch {
+          ALL = [];
+        }
+      }
+      populateTags(ALL);
+      render();
+    }
 
-const state={items:[],query:"",tag:"",cat:""};
-const slug=s=>String(s||"").toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/(^-|-$)/g,"");
-const fromHash=()=>decodeURIComponent(location.hash.replace(/^#\\/?/,""));
-const setHash=(v)=>{location.hash="/"+encodeURIComponent(v||"");};
-window.addEventListener("hashchange",()=>{state.cat=fromHash(); render();});
-
-$("#search").addEventListener("input",e=>{state.query=e.target.value;render();});
-$("#tag").addEventListener("change",e=>{state.tag=e.target.value;render();});
-
-async function load(){
-  const res=await fetch("library.json",{cache:"no-store"}); state.items=await res.json();
-  state.cat=fromHash();
-  buildCatbar(); renderFilters(); render();
-}
-function buildCatbar(){
-  const bar=$("#catbar"); bar.innerHTML="";
-  const cats=Object.entries(state.items.reduce((m,x)=>{const c=x.category||"other";m[c]=(m[c]||0)+1;return m;},{}))
-    .sort((a,b)=>a[0].localeCompare(b[0]));
-  const mk=(label,count)=>{const el=document.createElement("span"); el.className="pill cat"+(state.cat===slug(label)?" active":""); el.textContent=label+" ("+count+")"; el.onclick=()=>{state.cat=slug(label); setHash(state.cat); render();}; bar.appendChild(el);};
-  mk("All", state.items.length);
-  cats.forEach(([c,count])=> mk(c, count));
-}
-function renderFilters(){
-  const tags=new Set([""]); state.items.forEach(x=>(x.tags||[]).forEach(t=>tags.add(t)));
-  const sel=$("#tag"); sel.innerHTML=""; for(const t of tags){const o=document.createElement("option");o.value=t;o.textContent=t?("#"+t):"All tags";sel.appendChild(o);}
-}
-function filtered(){
-  const q=(state.query||"").toLowerCase().trim();
-  return state.items
-    .filter(x=> state.cat && state.cat!=="all" ? slug(x.category||"")===state.cat : true)
-    .filter(x=> state.tag ? (x.tags||[]).includes(state.tag) : true)
-    .filter(x=> !q || (x.title||"").toLowerCase().includes(q) || (x.prompt||"").toLowerCase().includes(q) || (x.tags||[]).some(t=>t.toLowerCase().includes(q)))
-    .sort((a,b)=>(b.rating||0)-(a.rating||0));
-}
-function render(){
-  const grid=$("#grid"); const items=filtered(); $("#count").textContent=items.length+" item"+(items.length===1?"":"s"); grid.innerHTML="";
-  items.forEach(x=>{
-    const card=document.createElement("div"); card.className="glass card";
-    const head=document.createElement("div"); head.className="row";
-    const title=document.createElement("h3"); title.textContent=x.title;
-    const stars=document.createElement("div"); stars.title=(x.rating||0)+" stars"; stars.style.color="var(--accent)"; stars.textContent="★".repeat(x.rating||0);
-    head.appendChild(title); head.appendChild(stars);
-
-    const tags=document.createElement("div"); tags.className="tags";
-    const cat=document.createElement("span"); cat.className="pill"; cat.textContent="#"+(x.category||"Other"); tags.appendChild(cat);
-    (x.tags||[]).forEach(t=>{const b=document.createElement("span"); b.className="pill"; b.textContent="#"+t; tags.appendChild(b);});
-
-    const pre=document.createElement("div"); pre.className="pre"; pre.textContent=String(x.prompt||"");
-
-    const bar=document.createElement("div"); bar.className="row"; bar.style.marginTop="10px";
-    const price=document.createElement("div"); price.className="price"; price.textContent=x.price?("$"+x.price):"";
-    const actions=document.createElement("div"); actions.style.display="flex"; actions.style.gap="8px";
-    const buy=document.createElement("button"); buy.className="btn btn-primary"; buy.textContent="Buy →"; buy.onclick=()=>window.open(x.buyUrl||BUY_ALL_URL,"_blank");
-    const copy=document.createElement("button"); copy.className="btn btn-ghost"; copy.textContent="Copy"; copy.onclick=async()=>{try{await navigator.clipboard.writeText(String(x.prompt||""));toast("Copied");}catch{toast("Copy blocked");}};
-    actions.appendChild(buy); actions.appendChild(copy); bar.appendChild(price); bar.appendChild(actions);
-
-    card.appendChild(head); card.appendChild(tags); card.appendChild(pre); card.appendChild(bar);
-    grid.appendChild(card);
-  });
-}
-load();
-</script>
+    Q.addEventListener('input', render);
+    TAG.addEventListener('change', render);
+    load();
+  </script>
 </body>
 </html>
