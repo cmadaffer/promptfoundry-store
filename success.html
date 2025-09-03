@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Success — PromptFoundry</title>
+  <style>
+    body{margin:0;background:#0b0d12;color:#e8ebf3;font:16px/1.6 Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
+    .wrap{max-width:720px;margin:0 auto;padding:32px}
+    .panel{background:#121520;border:1px solid #1c2230;border-radius:16px;padding:24px}
+    pre{padding:12px;background:#0b0f1a;border:1px solid #1c2230;border-radius:10px;overflow:auto}
+    a{color:#82b1ff}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h2>You're in 🎉</h2>
+    <div class="panel">
+      <p id="msg">Finalizing your subscription…</p>
+      <div id="keyBox" style="display:none">
+        <p>Your license key:</p>
+        <pre id="key"></pre>
+        <p>Go back to the <a href="/">homepage</a> → click <b>Unlock Pro</b> and paste the key.</p>
+      </div>
+    </div>
+  </div>
+  <script>
+    const API_BASE = "https://your-api.onrender.com"; // set this to your API URL
+    const params = new URLSearchParams(location.search);
+    const sid = params.get("session_id");
+    const msg = document.getElementById("msg");
+    const keyBox = document.getElementById("keyBox");
+    const key = document.getElementById("key");
+
+    async function tryFetch() {
+      if (!sid) { msg.textContent = "Success! Check your email for your license key."; return; }
+      msg.textContent = "Fetching your license…";
+      for (let i=0;i<15;i++) {
+        const r = await fetch(`${API_BASE}/api/license/from-session?session_id=${encodeURIComponent(sid)}`, { cache: "no-store" });
+        const j = await r.json();
+        if (j.ok && j.token) {
+          key.textContent = j.token;
+          keyBox.style.display = "block";
+          msg.textContent = "Welcome to All-Access.";
+          return;
+        }
+        await new Promise(r => setTimeout(r, 1500));
+      }
+      msg.textContent = "You're subscribed. Check your email for your license key.";
+    }
+    tryFetch();
+  </script>
+</body>
+</html>
