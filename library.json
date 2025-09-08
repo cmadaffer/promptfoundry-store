@@ -1,39 +1,51 @@
 [
   {
-    "id": "cb-visa-10-4",
-    "category": "Chargebacks",
-    "title": "Chargeback Win Kit — Visa 10.4 (Fraud)",
-    "tags": ["Disputes", "Operations"],
-    "rating": 5,
-    "price": 99,
-    "buyUrl": "https://buy.stripe.com/fZudR89pEfa68sDgSs5Ne00",
-    "prompt": "Draft a Visa 10.4 representment for {{order_id}} {{amount}} {{order_date}}. Map evidence to 10.4 criteria. Include: 3-D Secure data, AVS/CVV, IP/device, delivery proof, prior comms. Close with issuer guidance."
-  },
-  {
-    "id": "cb-mc-4853",
-    "category": "Chargebacks",
-    "title": "Chargeback Win Kit — Mastercard 4853",
-    "tags": ["Disputes", "Operations"],
-    "rating": 5,
-    "price": 99,
-    "buyUrl": "https://buy.stripe.com/fZudR89pEfa68sDgSs5Ne00",
-    "prompt": "Draft a Mastercard 4853 representment for {{order_id}} {{amount}} {{order_date}}. Map evidence to the 4853 documentation list. Include identity/auth evidence, usage logs, delivery, support thread, refund policy, terms consent."
-  },
-  {
     "id": "cb-amex-unauth",
     "category": "Chargebacks",
     "title": "Chargeback Win Kit — Amex Unauthorized",
-    "tags": ["Disputes", "Operations"],
+    "tags": [
+      "Disputes",
+      "Operations"
+    ],
     "rating": 5,
     "price": 99,
     "buyUrl": "https://buy.stripe.com/fZudR89pEfa68sDgSs5Ne00",
     "prompt": "Draft an Amex unauthorized-dispute representment for {{order_id}} {{amount}} {{order_date}}. Map evidence to Amex checklist: device fingerprint, AVS/CVV, proof-of-receipt, KYC, comms."
   },
   {
+    "id": "cb-mc-4853",
+    "category": "Chargebacks",
+    "title": "Chargeback Win Kit — Mastercard 4853",
+    "tags": [
+      "Disputes",
+      "Operations"
+    ],
+    "rating": 5,
+    "price": 99,
+    "buyUrl": "https://buy.stripe.com/fZudR89pEfa68sDgSs5Ne00",
+    "prompt": "Draft a Mastercard 4853 representment for {{order_id}} {{amount}} {{order_date}}. Map evidence to the 4853 documentation list. Include identity/auth evidence, usage logs, delivery, support thread, refund policy, terms consent."
+  },
+  {
+    "id": "cb-visa-10-4",
+    "category": "Chargebacks",
+    "title": "Chargeback Win Kit — Visa 10.4 (Fraud)",
+    "tags": [
+      "Disputes",
+      "Operations"
+    ],
+    "rating": 5,
+    "price": 99,
+    "buyUrl": "https://buy.stripe.com/fZudR89pEfa68sDgSs5Ne00",
+    "prompt": "Draft a Visa 10.4 representment for {{order_id}} {{amount}} {{order_date}}. Map evidence to 10.4 criteria. Include: 3-D Secure data, AVS/CVV, IP/device, delivery proof, prior comms. Close with issuer guidance."
+  },
+  {
     "id": "cr-overdue-nudge",
     "category": "ClientReach",
     "title": "ClientReach — Overdue Invoice Nudge",
-    "tags": ["ClientReach", "Cold Email"],
+    "tags": [
+      "ClientReach",
+      "Cold Email"
+    ],
     "rating": 5,
     "price": 49,
     "buyUrl": "https://buy.stripe.com/fZudR89pEfa68sDgSs5Ne00",
@@ -43,7 +55,10 @@
     "id": "lg-local-75",
     "category": "LeadGen",
     "title": "Lead Gen — Local Services (≤75 words)",
-    "tags": ["LeadGen", "Cold Email"],
+    "tags": [
+      "LeadGen",
+      "Cold Email"
+    ],
     "rating": 5,
     "price": 49,
     "buyUrl": "https://buy.stripe.com/fZudR89pEfa68sDgSs5Ne00",
@@ -53,7 +68,9 @@
     "id": "ops-sop-writer",
     "category": "Ops",
     "title": "Ops — SOP Writer",
-    "tags": ["Operations"],
+    "tags": [
+      "Operations"
+    ],
     "rating": 5,
     "price": 59,
     "buyUrl": "https://buy.stripe.com/fZudR89pEfa68sDgSs5Ne00",
